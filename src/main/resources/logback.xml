@@ -31,7 +31,7 @@
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- rollover daily and when the file reaches 10 MegaBytes -->
-			<fileNamePattern>archived/SQL_Gen-%d{yyyy-MM-dd}.%i.log
+			<fileNamePattern>${logback.dir}/SQL_Gen-%d{yyyy-MM-dd}.%i.log
 			</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -42,7 +42,7 @@
 
 	<appender name="ErrorFile"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${logback.dir}/SQL_Gen.errorlog</file>
+		<file>${logback.dir}/SQL_Gen_error.log</file>
 		<encoder
 			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n
@@ -59,7 +59,7 @@
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- rollover daily and when the file reaches 10 MegaBytes -->
-			<fileNamePattern>SQL_Gen-%d{yyyy-MM-dd}.%i.errlog
+			<fileNamePattern>${logback.dir}/SQL_Gen_error-%d{yyyy-MM-dd}.%i.log
 			</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">

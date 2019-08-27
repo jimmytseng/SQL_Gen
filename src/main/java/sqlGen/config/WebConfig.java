@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("index");
-		registry.addViewController("/sql/native").setViewName("sql/native");
+//		registry.addViewController("/sql/native").setViewName("sql/native");
 	}
 	
 	@Override
