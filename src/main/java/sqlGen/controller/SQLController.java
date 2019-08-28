@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,8 +21,9 @@ public class SQLController {
 	private CommonTableService tableService;
 	
 	@RequestMapping("/native")
-	public String handler(@ModelAttribute("sqlGenDTO")GenSqlDTO sqlGenDTO) {
+	public String handler(@ModelAttribute("sqlGenDTO")GenSqlDTO sqlGenDTO,ModelMap modelMap) {
 		Map<String, String> tableOption = tableService.getAllTableOption();
+		modelMap.addAttribute("tableOption", tableOption);
 		return "sql/native";
 	}
 	@RequestMapping("/genSql")

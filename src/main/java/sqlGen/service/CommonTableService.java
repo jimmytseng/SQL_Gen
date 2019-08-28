@@ -17,4 +17,9 @@ public class CommonTableService {
 	public Map<String, String> getAllTableOption(){
 		return tableDAO.getAllTableOption();
 	}
+
+	public List<String> getTableColumns(String tableName) {
+		
+		return tableDAO.getTableColumns(tableName);
+	}
 }
