@@ -1,19 +1,28 @@
 package sqlGen.dto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GenSqlDTO {
+	public static final String DML_SELECT = "select";
+	public static final String DML_INSERT = "insert";
 	public static final String DML_UPDATE = "update";
 	public static final String DML_DELETE = "delete";
-	public static final String DML_SELECT = "select";
-	
+	public static Map<Integer, String> letterMap;
+	static {
+		letterMap = new HashMap<>();
+		letterMap.put(1, "none");
+		letterMap.put(2, "lower-case");
+		letterMap.put(3, "upper-case");
+	}
 	String sqlType;
 	String tableName;
 	List<String> columnNAME;
 	String dmlType;
 	boolean withSchema;
 	String whereCondition;
-	boolean isUpperCase;
+	Integer isUpperCase=1;
 
 	public String getSqlType() {
 		return sqlType;
@@ -63,11 +72,12 @@ public class GenSqlDTO {
 		this.whereCondition = whereCondition;
 	}
 
-	public boolean isUpperCase() {
+	public Integer getIsUpperCase() {
 		return isUpperCase;
 	}
 
-	public void setUpperCase(boolean isUpperCase) {
+	public void setIsUpperCase(Integer isUpperCase) {
 		this.isUpperCase = isUpperCase;
 	}
+
 }

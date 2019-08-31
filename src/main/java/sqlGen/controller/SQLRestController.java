@@ -39,4 +39,10 @@ public class SQLRestController {
 		return columnNames;
 	}
 
+	@RequestMapping(value = "/getTables")
+	public Map<String, String> getTables(@RequestParam String filterName) {
+		Map<String, String> tableNames = this.tableService.getTableByFilterName(filterName);
+		return tableNames;
+	}
+
 }

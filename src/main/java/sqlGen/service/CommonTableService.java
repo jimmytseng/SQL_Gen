@@ -19,7 +19,10 @@ public class CommonTableService {
 	}
 
 	public List<String> getTableColumns(String tableName) {
-		
 		return tableDAO.getTableColumns(tableName);
+	}
+
+	public Map<String, String> getTableByFilterName(String filterName) {
+		return tableDAO.getTableByFilterName(filterName);
 	}
 }
