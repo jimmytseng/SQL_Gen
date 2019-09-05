@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="wrapper">
 	<nav id="sidebar" class="navbar navbar-light">
-	    <div class="sidebar-header">
+	    <div class="sidebar-header container">
             <h3>Menu Bar</h3>
         </div>
          <ul class="list-unstyled components">

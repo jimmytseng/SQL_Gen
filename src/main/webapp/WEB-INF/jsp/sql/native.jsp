@@ -38,12 +38,12 @@
 			</tr>
 			<tr id="columnRow" style="display:block">
 			</tr>
-			<tr style="display:block"><td class="keywork">and</td><td class="keywork">or</td><td class="keywork">like</td></tr>
+			<tr style="display:block"><td class="keywork btn btn-outline-dark">and</td><td class="keywork btn btn-outline-dark">or</td><td class="keywork btn btn-outline-dark">like</td></tr>
 			<tr><td>where condition</td></tr>
 			<tr><td><form:textarea path="whereCondition" rows="5" cols="100" id="whereCondition"/></td></tr>
 			
 			<tr>
-				<td><input type="button" value="產生SQL" onclick="summitForm(this.fom)" /></td>
+				<td><input type="button" class="btn btn-success" value="產生SQL" onclick="summitForm(this.fom)" /></td>
 			</tr>
 		</table>
 	</form:form>
