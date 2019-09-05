@@ -9,10 +9,12 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
 	</definition>
-
-	<definition name="sql/native" extends="base.definition">
-		<put-attribute name="title" value="native_sql" />
-		<put-attribute name="body" value="/WEB-INF/jsp/sql/native.jsp" />
+	
+	<definition name="index" extends="base.definition">
+		<put-attribute name="title" value="首頁" />
+		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
 	</definition>
+
+	
 
 </tiles-definitions>
