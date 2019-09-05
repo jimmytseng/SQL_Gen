@@ -30,6 +30,8 @@
 						label="${GenSqlDTO.DML_DELETE}"></form:radiobutton>
 				</td>	
 			</tr>
+			<tr id="columnSelected" style="display:inline">
+			</tr>
 			<tr><td>letter choose</td></tr>
 			<tr>
 				<td>
@@ -43,7 +45,7 @@
 			<tr><td><form:textarea path="whereCondition" rows="5" cols="100" id="whereCondition"/></td></tr>
 			
 			<tr>
-				<td><input type="button" class="btn btn-success" value="產生SQL" onclick="summitForm(this.fom)" /></td>
+				<td><input type="button" class="btn btn-success" value="產生SQL" onclick="summitForm(this.form)" /></td>
 			</tr>
 		</table>
 	</form:form>
@@ -61,16 +63,27 @@
 				dataType : "json",
 				success : function(data) {
 					var columns = [];
+					var columnsCheckboxes =[];
 					$("#columnRow").empty();
-					$.each(data, function(index, value) {
-						columns.push($('<td>').html(value).on('dblclick',appendWhereCondition));
+					$.each(data, function(index, val) {
+						columns.push($('<td>').html(val).addClass("btn btn-outline-dark").on('dblclick',appendWhereCondition));
+ 						columnsCheckboxes.push($('<td>').html(
+	 								$('<input>', {
+	 								    type:"checkbox",
+	 								    value:val,
+	 								    name:"columnNAME",
+	 								    id:val
+	 								}).prepend($('<label />').text(val))
+ 								));
 					})
 					$("#columnRow").append(columns);
+					$("#columnSelected").append(columnsCheckboxes);
 				}
 			});
 		})
 		
 		$(".keywork").on('dblclick',appendWhereCondition);
+		
 	    $("#filterText").on('blur',function(){
 	    	var filterName=$("#filterText").val();
 	    	$.ajax({
@@ -82,13 +95,17 @@
 				contentType : "application/json; charset=utf-8",
 				dataType : "json",
 				success : function(data) {
-// 					var columns = [];
-// 					$("#columnRow").empty();
-// 					$.each(data, function(index, value) {
-// 						columns.push($('<td>').html(value).on('dblclick',appendWhereCondition));
-// 					})
-// 					$("#columnRow").append(columns);
-				alert(data);
+				var retureData = data;
+				console.log(retureData)
+				$("#tableName").empty();
+				$.each(retureData,function(key,data){
+					console.log(key);
+					console.log(data);
+					 $('#tableName').append($('<option>', { 
+					        value: key,
+					        text : data 
+					 }));
+				});
 				}
 			});
 	    })
