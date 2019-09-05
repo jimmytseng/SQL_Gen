@@ -3,15 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<script
-	src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js"></script>
-<meta charset="UTF-8">
-<title>native_sql</title>
-</head>
-<body>
 	<form:form method="POST" action="/nativeSQL/genSql"
 		modelAttribute="sqlGenDTO">
 		<table>
@@ -56,7 +47,6 @@
 			</tr>
 		</table>
 	</form:form>
-</body>
 <script>
 	$(document).ready(function() {
 		$("#tableName").on('change', function() {
@@ -119,5 +109,4 @@
 		console.log(tableName);
 	}
 </script>
-</html>
 
