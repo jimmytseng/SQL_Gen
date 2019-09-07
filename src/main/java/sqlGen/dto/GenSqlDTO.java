@@ -16,13 +16,14 @@ public class GenSqlDTO {
 		letterMap.put(2, "lower-case");
 		letterMap.put(3, "upper-case");
 	}
-	String sqlType;
-	String tableName;
-	List<String> columnNAME;
-	String dmlType;
-	boolean withSchema;
-	String whereCondition;
-	Integer isUpperCase=1;
+	private String sqlType;
+	private String tableName;
+	private List<String> columnName;
+	private String dmlType;
+	private boolean withSchema;
+	private String whereCondition;
+	private Integer isUpperCase=1;
+	private String sqlResult;
 
 	public String getSqlType() {
 		return sqlType;
@@ -40,12 +41,14 @@ public class GenSqlDTO {
 		this.tableName = tableName;
 	}
 
-	public List<String> getColumnNAME() {
-		return columnNAME;
+
+
+	public List<String> getColumnName() {
+		return columnName;
 	}
 
-	public void setColumnNAME(List<String> columnNAME) {
-		this.columnNAME = columnNAME;
+	public void setColumnName(List<String> columnName) {
+		this.columnName = columnName;
 	}
 
 	public String getDmlType() {
@@ -78,6 +81,14 @@ public class GenSqlDTO {
 
 	public void setIsUpperCase(Integer isUpperCase) {
 		this.isUpperCase = isUpperCase;
+	}
+
+	public String getSqlResult() {
+		return sqlResult;
+	}
+
+	public void setSqlResult(String sqlResult) {
+		this.sqlResult = sqlResult;
 	}
 
 }
