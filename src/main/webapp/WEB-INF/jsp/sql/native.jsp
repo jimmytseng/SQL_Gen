@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="sqlGen.dto.GenSqlDTO"%>
+	pageEncoding="UTF-8" import="sqlGen.dto.GenSqlDTO,sqlGen.core.GenSQL"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
@@ -8,13 +8,17 @@
 		<table>
 			<tr id="tableNameTR" style="display:block">
 				<td>
-					<form:select path="tableName">
-					<form:option value="choose_table" />
+				    <div class="form-group">
+					<form:select path="tableName" class="form-control">
+					<form:option value="choose_table" class="form-control"/>
 					<form:options items="${tableOption}" />
 					</form:select>
+					</div>
 				</td>
 				<td>
-				    <input type="text" id="filterText">
+				    <div class="form-group">
+				    <input type="text" id="filterText" class="form-control">
+				    </div>
 				</td>
 			</tr>
 			<tr><td>DML_TYPE</td></tr>
@@ -30,7 +34,8 @@
 						label="${GenSqlDTO.DML_DELETE}"></form:radiobutton>
 				</td>	
 			</tr>
-			<tr id="columnSelected" style="display:inline">
+			<tr id="columnSelected" style="display:block">
+			
 			</tr>
 			<tr><td>letter choose</td></tr>
 			<tr>
@@ -40,10 +45,22 @@
 			</tr>
 			<tr id="columnRow" style="display:block">
 			</tr>
-			<tr style="display:block"><td class="keywork btn btn-outline-dark">and</td><td class="keywork btn btn-outline-dark">or</td><td class="keywork btn btn-outline-dark">like</td></tr>
+			<tr style="display:block">
+				<td class="keywork btn btn-outline-dark" title="and">and</td>
+				<td class="keywork btn btn-outline-dark" title="or">or</td>
+				<td class="keywork btn btn-outline-dark" title="like '%%'">like '%%'</td>
+				<td class="keywork btn btn-outline-dark" title="in(,)">in(,)</td>
+				<td class="keywork btn btn-outline-dark" title="=">=</td>
+				<td class="keywork btn btn-outline-dark" title="=">''</td>
+			</tr>
 			<tr><td>where condition</td></tr>
-			<tr><td><form:textarea path="whereCondition" rows="5" cols="100" id="whereCondition"/></td></tr>
-			
+			<tr>
+				<td>
+				    <div class="form-group">
+					     <form:textarea path="whereCondition" class="form-control" rows="5" cols="100" id="whereCondition"/>
+					</div>
+				</td>
+			</tr>
 			<tr>
 				<td><input type="button" class="btn btn-success" value="產生SQL" onclick="summitForm(this.form)" /></td>
 			</tr>
@@ -67,20 +84,43 @@
 					$("#columnRow").empty();
 					$.each(data, function(index, val) {
 						columns.push($('<td>').html(val).addClass("btn btn-outline-dark").on('dblclick',appendWhereCondition));
- 						columnsCheckboxes.push($('<td>').html(
-	 								$('<input>', {
-	 								    type:"checkbox",
-	 								    value:val,
-	 								    name:"columnNAME",
-	 								    id:val
-	 								}).prepend($('<label />').text(val))
- 								));
-					})
+						 var myTD = document.createElement("td"); 
+						 var checkbox = document.createElement('input'); 
+				            checkbox.type = "checkbox"; 
+				            checkbox.name = "columnNAME"; 
+				            checkbox.value = val; 
+				            checkbox.id = val; 
+				         var label = document.createElement('label');  
+				             label.htmlFor = val; 
+				             label.innerHTML = val;
+				             myTD.appendChild(checkbox); 
+				             myTD.appendChild(label); 
+				         columnsCheckboxes.push(myTD);
+				    });
+					 var myTD = document.createElement("td");
+					 var selectAllCheckbox = document.createElement('input'); 
+					 	selectAllCheckbox.type = "checkbox"; 
+			            selectAllCheckbox.id = "checkall"; 
+			         var label = document.createElement('label');  
+			            label.htmlFor = "checkall"; 
+			            label.innerHTML = "全選";
+			          $(selectAllCheckbox).bind('change',function(){
+			        	  if($(this).prop('checked')){
+			        		  checkboxesChecked();
+			        	  }else{
+			        		  checkboxesUnchecked();
+			        	  }
+			          })  
+			          myTD.appendChild(selectAllCheckbox); 
+			          myTD.appendChild(label);    
 					$("#columnRow").append(columns);
+					$("#columnSelected").empty();
+					$("#columnSelected").append(myTD);
 					$("#columnSelected").append(columnsCheckboxes);
-				}
+					
+		    	}
 			});
-		})
+		});
 		
 		$(".keywork").on('dblclick',appendWhereCondition);
 		
@@ -104,7 +144,7 @@
 					 $('#tableName').append($('<option>', { 
 					        value: key,
 					        text : data 
-					 }));
+					 })).change();
 				});
 				}
 			});
@@ -115,15 +155,37 @@
 					console.log(whereCondition);
 					$("#whereCondition").val(whereCondition) ;
 	    }
+	    
+	    $("#dmlType4").on('click',function(){
+	    	checkboxesUnchecked();
+	    	$("#columnSelected").hide();
+	    })
+	    
+	    $("#dmlType1,#dmlType2,#dmlType3").on('click',function(){
+	    	$("#columnSelected").show();
+	    })
 		
 	})
 	
+	function checkboxesUnchecked(){
+		$("#checkall").prop("checked", false);
+		$("input[name='columnNAME']").prop("checked", false);
+	}
+	
+	function checkboxesChecked(){
+		$("#checkall").prop("checked", true);
+		$("input[name='columnNAME']").prop("checked", true);
+	}
+	
 	function summitForm(form){
 		var tableName = $("#tableName :selected").text();
+		checkboxesChecked();
 		if("choose_table"==tableName){
-			alert("請選擇表單");
+// 			alert("請選擇表單");
+			return;
 		}
 		console.log(tableName);
+// 		form.submit();
 	}
 </script>
 
