@@ -3,6 +3,7 @@ package sqlGen.core;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
 
 import sqlGen.dto.GenSqlDTO;
 
@@ -17,10 +18,10 @@ public class NativeGenSQL extends GenSQL {
 		List<String> columnNames = this.genSqlDTO.getColumnName();
 		StringBuilder builder = new StringBuilder();
 		builder.append(" select ");
-		if (columnNames.size() > 0)
-			concateColumn(builder);
-		else
+		if (CollectionUtils.isEmpty(columnNames))
 			builder.append(" * ");
+		else
+			concateColumn(builder);
 		builder.append(" from ");
 		builder = concateTable(builder);
 		builder = concateWhereConditon(builder);
@@ -43,7 +44,7 @@ public class NativeGenSQL extends GenSQL {
 		builder.append(" update ");
 		builder = concateTable(builder);
 		builder.append(" set ");
-		if (columnNames.size() == 0) {
+		if (CollectionUtils.isEmpty(columnNames)) {
 			throw new RuntimeException();
 		} else {
 			for (int i = 0; i < columnNames.size(); i++) {
@@ -64,12 +65,12 @@ public class NativeGenSQL extends GenSQL {
 		List<String> columnNames = this.genSqlDTO.getColumnName();
 		builder.append(" insert into  ");
 		builder = concateTable(builder);
-		if (this.genSqlDTO.getColumnName().size() > 0) {
+		if (this.genSqlDTO.getColumnName()!=null) {
 		builder.append("( ");
 		concateColumn(builder);
 		builder.append(" )");
 		}
-		builder.append("values (");
+		builder.append(" values (");
 		for (int i = 0; i < columnNames.size(); i++) {
 			builder.append("?");
 			if (i != columnNames.size() - 1) {

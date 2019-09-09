@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-	<form:form method="POST" action="/nativeSQL/genSql"
+	<form:form method="POST" action="${pageContext.request.contextPath}/sql/genNativeSql"
 		modelAttribute="sqlGenDTO">
 		<form:hidden path="genType" value="${GenSqlDTO.NATIVE_GEN}" />
 		<table>
@@ -100,7 +100,7 @@
 						 var myTD = document.createElement("td"); 
 						 var checkbox = document.createElement('input'); 
 				            checkbox.type = "checkbox"; 
-				            checkbox.name = "columnNAME"; 
+				            checkbox.name = "columnName"; 
 				            checkbox.value = val; 
 				            checkbox.id = val; 
 				         var label = document.createElement('label');  
@@ -162,6 +162,7 @@
 					        text : data 
 					 })).change();
 				});
+				$("#whereCondition").val('');
 				}
 			});
 	    })
@@ -190,23 +191,39 @@
 	
 	function checkboxesUnchecked(){
 		$("#checkall").prop("checked", false);
-		$("input[name='columnNAME']").prop("checked", false);
+		$("input[name='columnName']").prop("checked", false);
 	}
 	
 	function checkboxesChecked(){
 		$("#checkall").prop("checked", true);
-		$("input[name='columnNAME']").prop("checked", true);
+		$("input[name='columnName']").prop("checked", true);
 	}
 	
 	function summitForm(form){
 		var tableName = $("#tableName :selected").text();
-		checkboxesChecked();
 		if("choose_table"==tableName){
-// 			alert("請選擇表單");
+			alert("請選擇表單");
 			return;
 		}
-		console.log(tableName);
-// 		form.submit();
+		var dmlType = $("input[name='dmlType']:checked").val();
+		if( typeof(dmlType) == "undefined"){
+			 alert("請選擇DML_Type");
+				return;
+		 }
+		var checkedColumns = $("input[name='columnName']:checked").val();
+		if(typeof(checkedColumns) == "undefined"){
+			if(dmlType=="${GenSqlDTO.DML_INSERT}"){
+				checkboxesChecked();
+			}else if(dmlType=="${GenSqlDTO.DML_UPDATE}"){
+				checkboxesChecked();
+			}
+		 }
+		clearResult();
+		form.submit();
+	}
+	
+	function clearResult(){
+		 $("#sqlResult").val('');
 	}
 </script>
 

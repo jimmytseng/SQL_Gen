@@ -22,15 +22,19 @@ public class SQLController {
 	
 	@RequestMapping("/native")
 	public String handler(@ModelAttribute("sqlGenDTO")GenSqlDTO sqlGenDTO,ModelMap modelMap) {
-		Map<String, String> tableOption = tableService.getAllTableOption();
-		modelMap.addAttribute("tableOption", tableOption);
 		return "sql/native";
 	}
-	@RequestMapping("/genSql")
+	@RequestMapping("/genNativeSql")
 	public String genSql(@ModelAttribute("sqlGenDTO")GenSqlDTO sqlGenDTO,ModelMap modelMap) {
 		GenSQLService genService = new GenSQLService();
 		String result = genService.genSQLStr(sqlGenDTO);
 		sqlGenDTO.setSqlResult(result);
 		return "sql/native";
+	}
+	
+	@ModelAttribute
+	public void getTableOption(ModelMap modelMap){
+		Map<String, String> tableOption = tableService.getAllTableOption();
+		modelMap.addAttribute("tableOption", tableOption);
 	}
 }
