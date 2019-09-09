@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import sqlGen.core.GenSQLService;
 import sqlGen.dto.GenSqlDTO;
 import sqlGen.service.CommonTableService;
 
@@ -26,7 +27,10 @@ public class SQLController {
 		return "sql/native";
 	}
 	@RequestMapping("/genSql")
-	public String handler(ModelAndView viewModel,GenSqlDTO dto) {
-		return "myView";
+	public String genSql(@ModelAttribute("sqlGenDTO")GenSqlDTO sqlGenDTO,ModelMap modelMap) {
+		GenSQLService genService = new GenSQLService();
+		String result = genService.genSQLStr(sqlGenDTO);
+		sqlGenDTO.setSqlResult(result);
+		return "sql/native";
 	}
 }

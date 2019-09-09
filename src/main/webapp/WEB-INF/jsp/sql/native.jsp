@@ -5,6 +5,7 @@
 
 	<form:form method="POST" action="/nativeSQL/genSql"
 		modelAttribute="sqlGenDTO">
+		<form:hidden path="genType" value="${GenSqlDTO.NATIVE_GEN}" />
 		<table>
 			<tr id="tableNameTR" style="display:block">
 				<td>
@@ -26,7 +27,7 @@
 				<td>
 					<form:radiobutton path="dmlType" value="${GenSqlDTO.DML_SELECT}"
 						label="${GenSqlDTO.DML_SELECT}"></form:radiobutton>
-					<form:radiobutton path="dmlType" value="${GenSqlDTO.DML_SELECT}"
+					<form:radiobutton path="dmlType" value="${GenSqlDTO.DML_INSERT}"
 						label="${GenSqlDTO.DML_INSERT}"></form:radiobutton>	
 					<form:radiobutton path="dmlType" value="${GenSqlDTO.DML_UPDATE}"
 						label="${GenSqlDTO.DML_UPDATE}"></form:radiobutton>
@@ -53,16 +54,28 @@
 				<td class="keywork btn btn-outline-dark" title="=">=</td>
 				<td class="keywork btn btn-outline-dark" title="=">''</td>
 			</tr>
-			<tr><td>where condition</td></tr>
-			<tr>
+			<tr id="whereRow">
 				<td>
 				    <div class="form-group">
+				    	 <div>
+				             <label for="whereCondition">where condition:</label>
+				         </div>  
 					     <form:textarea path="whereCondition" class="form-control" rows="5" cols="100" id="whereCondition"/>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td><input type="button" class="btn btn-success" value="產生SQL" onclick="summitForm(this.form)" /></td>
+			</tr>
+			<tr>
+				<td>
+				    <div class="form-group">
+				         <div>
+				             <label for="sqlResult">result:</label>
+				         </div>
+					     <form:textarea path="sqlResult" class="form-control" rows="5" cols="100" id="sqlResult"/>
+					</div>
+				</td>
 			</tr>
 		</table>
 	</form:form>
@@ -97,6 +110,8 @@
 				             myTD.appendChild(label); 
 				         columnsCheckboxes.push(myTD);
 				    });
+					console.log("data:"+data);
+					if(data!=""){
 					 var myTD = document.createElement("td");
 					 var selectAllCheckbox = document.createElement('input'); 
 					 	selectAllCheckbox.type = "checkbox"; 
@@ -113,6 +128,7 @@
 			          })  
 			          myTD.appendChild(selectAllCheckbox); 
 			          myTD.appendChild(label);    
+					}
 					$("#columnRow").append(columns);
 					$("#columnSelected").empty();
 					$("#columnSelected").append(myTD);
@@ -136,7 +152,7 @@
 				dataType : "json",
 				success : function(data) {
 				var retureData = data;
-				console.log(retureData)
+				console.log(retureData);
 				$("#tableName").empty();
 				$.each(retureData,function(key,data){
 					console.log(key);
@@ -161,10 +177,15 @@
 	    	$("#columnSelected").hide();
 	    })
 	    
-	    $("#dmlType1,#dmlType2,#dmlType3").on('click',function(){
+	    $("#dmlType1,#dmlType3").on('click',function(){
 	    	$("#columnSelected").show();
+	    	$("#whereRow").show();
 	    })
 		
+	    $("#dmlType2").on('click',function(){
+	    	$("#whereRow").hide();
+	    	$("#columnSelected").show();
+	    })
 	})
 	
 	function checkboxesUnchecked(){

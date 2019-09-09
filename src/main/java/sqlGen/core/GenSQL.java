@@ -1,7 +1,5 @@
 package sqlGen.core;
 
-import java.util.List;
-
 import sqlGen.dto.GenSqlDTO;
 
 abstract public class GenSQL {
@@ -12,43 +10,9 @@ abstract public class GenSQL {
 		this.genSqlDTO = genSqlDTO;
 	}
 
-	public static String NATIVE_GEN = "NATIVE";
-
-	public static String JDBCTemplate_Gen = "JDBCTemplate";
-
 	public static String JPA_Gen = "JPA";
 
-	public String genSelect() {
-		List<String> columnNames = this.genSqlDTO.getColumnName();
-		StringBuilder builder = new StringBuilder();
-		builder.append(" select ");
-		if (columnNames.size() == 0) {
-
-		} else {
-			for (int i = 0; i < columnNames.size(); i++) {
-				String column = columnNames.get(i);
-				builder = concateColumn(column, builder);
-				if (i != columnNames.size() - 1) {
-					builder.append(" , ");
-				}
-			}
-		}
-		builder.append(" from ");
-
-		builder = concateTable(builder);
-		return builder.toString();
-	}
-
-	protected StringBuilder concateTable(StringBuilder builder) {
-		builder.append(" " + genSqlDTO.getTableName() + " ");
-		return builder;
-	}
-
-	protected StringBuilder concateColumn(String column, StringBuilder builder) {
-		builder.append(" " + genSqlDTO.getTableName() + " ");
-		return builder;
-
-	}
+	abstract public String genSelect();
 
 	abstract public String genDelete();
 
@@ -62,11 +26,26 @@ abstract public class GenSQL {
 		case "NATIVE":
 			genSQL = new NativeGenSQL(dto);
 			break;
-		case "JDBCTemplate":
+		case "JDBCTMEPLATE":
 			genSQL = new JDBCTemplateGenSQL(dto);
 			break;
 		}
 		return genSQL;
+	}
 
+	protected String genSql() {
+		String dmlType = this.genSqlDTO.getDmlType();
+		switch (dmlType) {
+		case GenSqlDTO.DML_SELECT:
+			return genSelect();
+		case GenSqlDTO.DML_DELETE:
+			return genDelete();
+		case GenSqlDTO.DML_UPDATE:
+			return genUpdate();
+		case GenSqlDTO.DML_INSERT:
+			return genInsert();
+		default:
+			throw new RuntimeException();
+		}
 	}
 }

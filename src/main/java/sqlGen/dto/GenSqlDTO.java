@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class GenSqlDTO {
+	public static final String NATIVE_GEN = "NATIVE";
+	public static final String JDBCTEMPLATE_GEN = "JDBCTMEPLATE";
 	public static final String DML_SELECT = "select";
 	public static final String DML_INSERT = "insert";
 	public static final String DML_UPDATE = "update";
@@ -16,14 +18,23 @@ public class GenSqlDTO {
 		letterMap.put(2, "lower-case");
 		letterMap.put(3, "upper-case");
 	}
+	private String genType;
 	private String sqlType;
 	private String tableName;
 	private List<String> columnName;
 	private String dmlType;
-	private boolean withSchema;
+//	private boolean withSchema;
 	private String whereCondition;
-	private Integer isUpperCase=1;
+	private Integer isUpperCase = 1;
 	private String sqlResult;
+
+	public String getGenType() {
+		return genType;
+	}
+
+	public void setGenType(String genType) {
+		this.genType = genType;
+	}
 
 	public String getSqlType() {
 		return sqlType;
@@ -41,8 +52,6 @@ public class GenSqlDTO {
 		this.tableName = tableName;
 	}
 
-
-
 	public List<String> getColumnName() {
 		return columnName;
 	}
@@ -57,14 +66,6 @@ public class GenSqlDTO {
 
 	public void setDmlType(String dmlType) {
 		this.dmlType = dmlType;
-	}
-
-	public boolean isWithSchema() {
-		return withSchema;
-	}
-
-	public void setWithSchema(boolean withSchema) {
-		this.withSchema = withSchema;
 	}
 
 	public String getWhereCondition() {
