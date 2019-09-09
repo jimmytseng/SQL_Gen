@@ -81,6 +81,9 @@
 	</form:form>
 <script>
 	$(document).ready(function() {
+		
+		$("#tableName")[0].selectedIndex = 0; 
+		
 		$("#tableName").on('change', function() {
 			var tableName = $(this).children("option:selected").val();
 			$.ajax({
