@@ -16,11 +16,18 @@
 	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
+<style type="text/css">
+.myheader {
+    background-image: url("${pageContext.request.contextPath}/assets/images/header.png");
+    background-size: auto;
+}
+
+</style>
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row">
-			<tiles:insertAttribute name="header" />
+		<div class="row" style="height:150px">
+			<tiles:insertAttribute name="header"/>
 		</div>
 		<div class="row">
 			<div class="col-3">

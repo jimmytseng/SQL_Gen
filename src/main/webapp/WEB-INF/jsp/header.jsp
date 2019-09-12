@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-    HEADER
+    <div class="myheader container-fluid">
+        <p>Header</p>
+    </div>
