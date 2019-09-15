@@ -2,8 +2,8 @@ package genClassUtils;
 
 public class Parameter implements AutoGen, IsFinalCheck {
 
-	public Parameter() {
-
+	public Parameter(String paraName) {
+		this.paraName = paraName;
 	}
 
 	public Parameter(DataType dataType) {
@@ -17,9 +17,9 @@ public class Parameter implements AutoGen, IsFinalCheck {
 
 	private DataType dataType = DataType.STRING;
 
-	private String paraName;
+	private String paraName = "";
 
-	private Boolean isFinal;
+	private Boolean isFinal = false;
 
 	public DataType getDataType() {
 		return dataType;
@@ -50,7 +50,7 @@ public class Parameter implements AutoGen, IsFinalCheck {
 		StringBuilder paraBuilder = new StringBuilder();
 		if (this.getIsFinal())
 			paraBuilder.append("final ");
-		paraBuilder.append(this.dataType.getDataType());
+		paraBuilder.append(this.dataType.getDataType() + emptySpace);
 		paraBuilder.append(this.paraName);
 		return paraBuilder.toString();
 	}

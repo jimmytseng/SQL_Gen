@@ -1,9 +1,29 @@
 package genClassUtils;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Method implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractCheck {
+
+	public Method() {
+
+	}
+
+	public Method(String methodName) {
+		this.methodName = methodName;
+	}
+
+	public Method(String methodName, String content) {
+		this.methodName = methodName;
+		this.content = content;
+	}
+
+	public Method(String methodName, DataType returnType, String content) {
+		this.methodName = methodName;
+		this.content = content;
+		this.returnType = returnType;
+	}
 
 	private final static String startParentheses = "(";
 	private final static String endParentheses = ")";
@@ -12,7 +32,9 @@ public class Method implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractC
 
 	private String methodName = "";
 
-	private DataType returnDataType
+	private DataType returnType = DataType.STRING;
+
+	private String content;
 
 	private Boolean isFinal = false;
 
@@ -35,11 +57,36 @@ public class Method implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractC
 			methodBuilder.append("static ");
 		if (this.isFinal)
 			methodBuilder.append("fianl ");
-		methodBuilder.append(GenStringUtil.firstToLower(this.methodName) + emptySpace);
+		if (this.returnType == null) {
+			methodBuilder.append("void ");
+		} else {
+			methodBuilder.append(this.returnType.getDataType() + emptySpace);
+		}
+		methodBuilder.append(GenStringUtil.firstToLower(this.methodName));
 		methodBuilder.append(startParentheses);
-
+		if (parameters.size() > 0) {
+			Iterator<Parameter> it = parameters.iterator();
+			Boolean commaFlag = false;
+			while (it.hasNext()) {
+				if (commaFlag) {
+					methodBuilder.append(", ");
+				}
+				commaFlag = true;
+				methodBuilder.append(it.next().genCode());
+			}
+		}
 		methodBuilder.append(endParentheses);
-		methodBuilder.append(changeLine);
+		if (isAbstract)
+			methodBuilder.append(";");
+		else {
+			methodBuilder.append(startCurl);
+			methodBuilder.append(changeLineAndSpace);
+			if (this.content != null) {
+				methodBuilder.append(content);
+				methodBuilder.append(changeLineAndSpace);
+			}
+			methodBuilder.append(endCurl);
+		}
 		return methodBuilder.toString();
 	}
 
@@ -93,6 +140,22 @@ public class Method implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractC
 
 	public void setParameters(Set<Parameter> parameters) {
 		this.parameters = parameters;
+	}
+
+	public DataType getReturnType() {
+		return returnType;
+	}
+
+	public void setReturnType(DataType returnType) {
+		this.returnType = returnType;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }

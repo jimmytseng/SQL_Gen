@@ -2,7 +2,7 @@ package genClassUtils;
 
 public enum DataType {
 
-	STRING("String"), TIMESTAMP("Timestamp"), DATE("Date"), INTEGER("Interger"), BOOLEAN("Boolean"), FLOAT("Float"),
+	STRING("String"), TIMESTAMP("Timestamp"), DATE("Date"), INTEGER("Integer"), BOOLEAN("Boolean"), FLOAT("Float"),
 	LONG("Long");
 
 	DataType(String dataType) {

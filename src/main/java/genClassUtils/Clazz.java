@@ -44,7 +44,9 @@ public class Clazz implements AutoGen, IsFinalCheck {
 		}
 
 		if (this.methodSet.size() > 0) {
-			methodSet.forEach(method -> method.genCode());
+			methodSet.forEach(method -> {
+				clzzString.append(method.genCode());
+			});
 		}
 
 		clzzString.append(changeLine);
@@ -53,7 +55,15 @@ public class Clazz implements AutoGen, IsFinalCheck {
 	}
 
 	public static void main(String[] args) {
-		String clazz = new ClazzBuilder("MyClass").addField(new Field("MyTestFiled")).buildClazz().genCode();
+
+		Method method = new Method("MyTestMethod", "MyContent");
+		method.setReturnType(null);
+		Parameter param = new Parameter("MyParam");
+		Parameter param2 = new Parameter("MyParam2");
+		method.getParameters().add(param);
+		method.getParameters().add(param2);
+		String clazz = new ClazzBuilder("MyClass").addField(new Field("MyTestFiled")).addMethod(method).buildClazz()
+				.genCode();
 		System.out.print(clazz);
 	}
 
