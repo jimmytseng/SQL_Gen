@@ -61,7 +61,6 @@ public class Clazz implements AutoGen, IsFinalCheck {
 		Parameter param = new Parameter("MyParam");
 		Parameter param2 = new Parameter("MyParam2");
 		method.getParameters().add(param);
-		method.getParameters().add(param2);
 		String clazz = new ClazzBuilder("MyClass").addField(new Field("MyTestFiled")).addMethod(method).buildClazz()
 				.genCode();
 		System.out.print(clazz);
