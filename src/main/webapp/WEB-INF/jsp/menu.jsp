@@ -17,7 +17,7 @@
 	          </li>
 	          <li>
               </li>
-          	  <li><a href="#">Entity_Gen</a></li> 
+          	  <li><a href="${pageContext.request.contextPath}/entity/native">Entity_Gen</a></li> 
          <!--      <li>
 	               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
 	                <ul class="collapse list-unstyled" id="pageSubmenu">

@@ -27,7 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tiles = new TilesConfigurer();
-		tiles.setDefinitions(new String[] { "WEB-INF/tiles/tiles.xml","WEB-INF/tiles/tiles_genSql.xml" });
+		tiles.setDefinitions(new String[] { "WEB-INF/tiles/tiles.xml","WEB-INF/tiles/tiles_genSql.xml","WEB-INF/tiles/tiles_genEntity.xml"});
 		return tiles;
 	}
 
