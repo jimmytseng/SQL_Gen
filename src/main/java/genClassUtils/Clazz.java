@@ -1,6 +1,7 @@
 package genClassUtils;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Clazz implements AutoGen, IsFinalCheck {
@@ -11,9 +12,9 @@ public class Clazz implements AutoGen, IsFinalCheck {
 
 	private AccessLevel accessLevel = AccessLevel.PUBLIC;
 
-	private Set<Field> fieldSet = new HashSet<>();
+	private Set<Field> fieldSet = new LinkedHashSet<>();
 
-	private Set<Method> methodSet = new HashSet<>();
+	private Set<Method> methodSet = new LinkedHashSet<>();
 
 	private Set<Interface> implementInterfaces = new HashSet<>();
 
@@ -55,14 +56,17 @@ public class Clazz implements AutoGen, IsFinalCheck {
 	}
 
 	public static void main(String[] args) {
-
-		Method method = new Method("MyTestMethod", "MyContent");
-		method.setReturnType(null);
-		Parameter param = new Parameter("MyParam");
-		Parameter param2 = new Parameter("MyParam2");
-		method.getParameters().add(param);
-		String clazz = new ClazzBuilder("MyClass").addField(new Field("MyTestFiled")).addMethod(method).buildClazz()
-				.genCode();
+		Field myfield = new Field("account");
+		myfield.setDataType(DataType.BOOLEAN);
+		Field myfield1 = new Field("address");
+		Field myfield2 = new Field("name");
+//		Method method = new Method("MyTestMethod", "MyContent");
+//		method.setReturnType(null);
+//		Parameter param = new Parameter("MyParam");
+//		Parameter param2 = new Parameter("MyParam2");
+//		method.getParameters().add(param);
+		String clazz = new ClazzBuilder("MyClass").buildGetterSetter(myfield).buildGetterSetter(myfield1)
+				.buildGetterSetter(myfield2).buildClazz().genCode();
 		System.out.print(clazz);
 	}
 
@@ -92,12 +96,20 @@ public class Clazz implements AutoGen, IsFinalCheck {
 		this.fieldSet = fieldSet;
 	}
 
+	public void addFields(Set<Field> fieldSet) {
+		this.fieldSet.addAll(fieldSet);
+	}
+
 	public Set<Method> getMethodSet() {
 		return methodSet;
 	}
 
 	public void setMethodSet(Set<Method> methodSet) {
 		this.methodSet = methodSet;
+	}
+
+	public void addMethods(Set<Method> methodSet) {
+		this.methodSet.addAll(methodSet);
 	}
 
 	public Set<Interface> getImplementInterfaces() {
@@ -108,6 +120,10 @@ public class Clazz implements AutoGen, IsFinalCheck {
 		this.implementInterfaces = implementInterfaces;
 	}
 
+	public void addImplementInterfaces(Set<Interface> implementInterfaces) {
+		this.implementInterfaces.addAll(implementInterfaces);
+	}
+
 	public AccessLevel getAccessLevel() {
 		return accessLevel;
 	}
@@ -116,4 +132,24 @@ public class Clazz implements AutoGen, IsFinalCheck {
 		this.accessLevel = accessLevel;
 	}
 
+	public void addGetter(Field field) {
+		Method getter = new Method("get" + GenStringUtil.firstToUpper(field.getFieldName()));
+		getter.setReturnType(field.getDataType());
+		getter.setContent("return " + field.getFieldName());
+		this.methodSet.add(getter);
+	}
+
+	public void addSetter(Field field) {
+		Method setter = new Method("set" + GenStringUtil.firstToUpper(field.getFieldName()));
+		setter.setReturnType(null);
+		Parameter setterParam = new Parameter(field.getDataType(), field.getFieldName());
+		setter.getParameters().add(setterParam);
+		setter.setContent("this." + field.getFieldName() + "=" + field.getFieldName());
+		this.methodSet.add(setter);
+	}
+
+	public void addGetterSetter(Field field) {
+		addGetter(field);
+		addSetter(field);
+	}
 }

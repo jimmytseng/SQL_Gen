@@ -22,14 +22,31 @@ public class ClazzBuilder {
 		this.clazz.getImplementInterfaces().add(interfaceImpl);
 		return this;
 	}
-
-	public static void main(String[] args) {
-
+	
+	public ClazzBuilder addGetter(Field field) {
+		this.clazz.addGetter(field);
+		return this;
 	}
 
+	public ClazzBuilder addSetter(Field field) {
+		this.clazz.addSetter(field);
+		return this;
+	}
+	
+	public ClazzBuilder addGetterSetter(Field field) {
+		this.clazz.addGetterSetter(field);
+		return this;
+	}
+	
 	public Clazz buildClazz() {
-
 		return this.clazz;
 	}
+	
+	public ClazzBuilder buildGetterSetter(Field field) {
+		addField(field);
+		addGetterSetter(field);
+		return this;
+	}
+	
 
 }

@@ -6,10 +6,6 @@ import java.util.Set;
 
 public class Method implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractCheck {
 
-	public Method() {
-
-	}
-
 	public Method(String methodName) {
 		this.methodName = methodName;
 	}
@@ -82,7 +78,8 @@ public class Method implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractC
 			methodBuilder.append(startCurl);
 			methodBuilder.append(changeLineAndSpace);
 			if (this.content != null) {
-				methodBuilder.append(content);
+				methodBuilder.append("\t"+content);
+				methodBuilder.append(";");
 				methodBuilder.append(changeLineAndSpace);
 			}
 			methodBuilder.append(endCurl);

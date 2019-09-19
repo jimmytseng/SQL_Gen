@@ -1,11 +1,10 @@
 package genClassUtils;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
-public class GenTest {
+public class GenUtil {
 	/**
      * 將檔案寫出至指定目錄
      *
@@ -26,6 +25,29 @@ public class GenTest {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	/**
+                  *將檔案寫出至指定目錄
+     *
+     * @param filename 要出至dir的目錄
+     * @param sb  要寫出的內容
+     */
+	public static void writefile(String filename, String str) {
+		try {
+			PrintStream out = new PrintStream(filename, "UTF-8");
+			out.print(str);
+			out.flush();
+			out.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		//GenReportMain GF = new GenReportMain();
 		String destinationLoc = "C://API/GenTest.java";

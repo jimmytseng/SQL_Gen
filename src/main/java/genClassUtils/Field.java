@@ -13,16 +13,16 @@ public class Field implements AutoGen, IsFinalCheck, IsStaticCheck {
 	private Boolean isStatic = false;
 
 	public Field(String fieldName) {
-		this.fieldName = fieldName;
+		this.fieldName = GenStringUtil.firstToLower(fieldName);
 	}
 
 	public Field(String fieldName, DataType dataType) {
-		this.fieldName = fieldName;
+		this.fieldName = GenStringUtil.firstToLower(fieldName);
 		this.dataType = dataType;
 	}
 
 	public Field(String fieldName, DataType dataType, AccessLevel accessLevel) {
-		this.fieldName = fieldName;
+		this.fieldName = GenStringUtil.firstToLower(fieldName);
 		this.dataType = dataType;
 		this.accessLevel = accessLevel;
 	}
@@ -31,7 +31,7 @@ public class Field implements AutoGen, IsFinalCheck, IsStaticCheck {
 		return dataType;
 	}
 
-	public void setFieldType(DataType dataType) {
+	public void setDataType(DataType dataType) {
 		this.dataType = dataType;
 	}
 
