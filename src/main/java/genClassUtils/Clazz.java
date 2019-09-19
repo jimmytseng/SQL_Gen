@@ -1,5 +1,6 @@
 package genClassUtils;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -22,8 +23,9 @@ public class Clazz implements AutoGen, IsFinalCheck {
 
 	@Override
 	public String genCode() {
-
-		StringBuilder clzzString = new StringBuilder(this.accessLevel.getAccLevelText() + emptySpace);
+		StringBuilder clzzString = new StringBuilder();
+		clzzString.append(changeLine);
+		clzzString.append(this.accessLevel.getAccLevelText() + emptySpace);
 		clzzString.append("class " + this.className + emptySpace);
 		if (extendsClazz != null) {
 			clzzString.append("extends " + extendsClazz.getClassName() + emptySpace);
@@ -67,7 +69,18 @@ public class Clazz implements AutoGen, IsFinalCheck {
 //		method.getParameters().add(param);
 		String clazz = new ClazzBuilder("MyClass").buildGetterSetter(myfield).buildGetterSetter(myfield1)
 				.buildGetterSetter(myfield2).buildClazz().genCode();
-		System.out.print(clazz);
+//		System.out.print(clazz);
+//		System.out.println(Clazz.class.getProtectionDomain());
+//		System.out.println(Clazz.class.getProtectionDomain().getCodeSource());
+//		System.out.println(Clazz.class.getProtectionDomain().getCodeSource().getLocation());
+//		System.out.println(Clazz.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+		System.out.println(Clazz.class.getSimpleName());
+		File file = new File("");
+		System.out.println(file.getAbsolutePath()+"\\src\\main\\java\\entity");
+		File destFile = new File(file.getAbsolutePath()+"\\src\\main\\java\\entity");
+		if(!destFile.exists()) {
+			destFile.mkdirs();
+		}
 	}
 
 	@Override
