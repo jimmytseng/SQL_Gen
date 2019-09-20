@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    
+	<changeSet author="Sylvia (generated)" id="1568958431977-2">
+		<createTable catalogName="TestDB"
+			tableName="Customer">
+			<column name="First_Name" type="VARCHAR(50)" />
+			<column name="Last_Name" type="VARCHAR(50)" />
+			<column name="Address" type="VARCHAR(50)" />
+			<column name="City" type="VARCHAR(50)" />
+			<column name="Country" type="VARCHAR(25)" />
+			<column name="Birth_Date" type="datetime" />
+		</createTable>
+	</changeSet>
+	
+	
+</databaseChangeLog>

@@ -23,7 +23,7 @@ public class CommonTableDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	public Map<String, String> getAllTableOption() {
-		String queryString = "SELECT [TABLE_NAME] FROM [INFORMATION_SCHEMA].[TABLES] ORDER BY [TABLE_NAME] ";
+		String queryString = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES ORDER BY TABLE_NAME ";
 		return this.jdbcTemplate.query(queryString, new ResultSetExtractor<Map<String, String>>() {
 			@Override
 			public Map<String, String> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -56,7 +56,7 @@ public class CommonTableDAO {
 	}
 
 	public Map<String, String> getTableByFilterName(String filterName) {
-		String queryString = "SELECT [TABLE_NAME] FROM [INFORMATION_SCHEMA].[TABLES] WHERE [TABLE_NAME] LIKE ? ";
+		String queryString = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE ? ";
 		return this.jdbcTemplate.query(queryString, new String[] { filterName + "%" },
 				new int[] { java.sql.Types.VARCHAR }, new ResultSetExtractor<Map<String, String>>() {
 					@Override
