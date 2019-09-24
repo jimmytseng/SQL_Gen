@@ -4,6 +4,10 @@ public class Interface extends CommonClazz implements AutoGen {
 
 	private String interfaceName = "";
 
+	public Interface(String interfaceName) {
+		this.interfaceName = interfaceName;
+	}
+
 	public String getInterfaceName() {
 		return interfaceName;
 	}
@@ -14,7 +18,9 @@ public class Interface extends CommonClazz implements AutoGen {
 
 	@Override
 	public String genCode() {
-		// TODO Auto-generated method stub
+		StringBuilder interfaceBuilder = new StringBuilder();
+		interfaceBuilder.append(changeLine);
+		interfaceBuilder.append("");
 		return null;
 	}
 

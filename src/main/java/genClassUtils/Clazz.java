@@ -1,11 +1,5 @@
 package genClassUtils;
 
-import java.io.File;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 
 	private String className = "";
@@ -13,12 +7,6 @@ public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 	private Boolean isFinal = false;
 
 	private AccessLevel accessLevel = AccessLevel.PUBLIC;
-
-	private Set<Field> fieldSet = new LinkedHashSet<>();
-
-	private Set<Method> methodSet = new LinkedHashSet<>();
-
-	private Set<Interface> implementInterfaces = new HashSet<>();
 
 	private Clazz extendsClazz = null;
 
@@ -110,43 +98,7 @@ public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 	public void setClassName(String className) {
 		this.className = className;
 	}
-
-	public Set<Field> getFieldSet() {
-		return fieldSet;
-	}
-
-	public void setFieldSet(Set<Field> fieldSet) {
-		this.fieldSet = fieldSet;
-	}
-
-	public void addFields(Set<Field> fieldSet) {
-		this.fieldSet.addAll(fieldSet);
-	}
-
-	public Set<Method> getMethodSet() {
-		return methodSet;
-	}
-
-	public void setMethodSet(Set<Method> methodSet) {
-		this.methodSet = methodSet;
-	}
-
-	public void addMethods(Set<Method> methodSet) {
-		this.methodSet.addAll(methodSet);
-	}
-
-	public Set<Interface> getImplementInterfaces() {
-		return implementInterfaces;
-	}
-
-	public void setImplementInterfaces(Set<Interface> implementInterfaces) {
-		this.implementInterfaces = implementInterfaces;
-	}
-
-	public void addImplementInterfaces(Set<Interface> implementInterfaces) {
-		this.implementInterfaces.addAll(implementInterfaces);
-	}
-
+	
 	public AccessLevel getAccessLevel() {
 		return accessLevel;
 	}
