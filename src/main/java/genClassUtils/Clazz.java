@@ -2,10 +2,11 @@ package genClassUtils;
 
 import java.io.File;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class Clazz implements AutoGen, IsFinalCheck {
+public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 
 	private String className = "";
 
@@ -26,14 +27,22 @@ public class Clazz implements AutoGen, IsFinalCheck {
 		StringBuilder clzzString = new StringBuilder();
 		clzzString.append(changeLine);
 		clzzString.append(this.accessLevel.getAccLevelText() + emptySpace);
-		clzzString.append("class " + this.className + emptySpace);
+		clzzString.append("class " + this.className);
+		if (this.isSupportGeneric) {
+			clzzString.append(this.genGenerics());
+		}
+		clzzString.append(emptySpace);
 		if (extendsClazz != null) {
-			clzzString.append("extends " + extendsClazz.getClassName() + emptySpace);
+			clzzString.append("extends " + extendsClazz.getClassName());
+			if (this.extendsClazz.isSupportGeneric) {
+				clzzString.append(this.extendsClazz.genGenerics());
+			}
+			clzzString.append(emptySpace);
 		}
 		if (implementInterfaces.size() > 0) {
 			clzzString.append("implements ");
 			for (Interface interfaceImpl : this.implementInterfaces) {
-				clzzString.append(interfaceImpl.getInterfaceName());
+				clzzString.append(interfaceImpl.getInterfaceName() + interfaceImpl.genGenerics());
 			}
 		}
 
@@ -68,19 +77,20 @@ public class Clazz implements AutoGen, IsFinalCheck {
 //		Parameter param2 = new Parameter("MyParam2");
 //		method.getParameters().add(param);
 		String clazz = new ClazzBuilder("MyClass").buildGetterSetter(myfield).buildGetterSetter(myfield1)
-				.buildGetterSetter(myfield2).buildClazz().genCode();
-//		System.out.print(clazz);
+				.buildGetterSetter(myfield2).addGeneric("Long").buildClazz().genCode();
+
+		System.out.print(clazz);
 //		System.out.println(Clazz.class.getProtectionDomain());
 //		System.out.println(Clazz.class.getProtectionDomain().getCodeSource());
 //		System.out.println(Clazz.class.getProtectionDomain().getCodeSource().getLocation());
 //		System.out.println(Clazz.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-		System.out.println(Clazz.class.getSimpleName());
-		File file = new File("");
-		System.out.println(file.getAbsolutePath()+"\\src\\main\\java\\entity");
-		File destFile = new File(file.getAbsolutePath()+"\\src\\main\\java\\entity");
-		if(!destFile.exists()) {
-			destFile.mkdirs();
-		}
+//		System.out.println(Clazz.class.getSimpleName());
+//		File file = new File("");
+//		System.out.println(file.getAbsolutePath() + "\\src\\main\\java\\entity");
+//		File destFile = new File(file.getAbsolutePath() + "\\src\\main\\java\\entity");
+//		if (!destFile.exists()) {
+//			destFile.mkdirs();
+//		}
 	}
 
 	@Override

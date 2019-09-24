@@ -13,8 +13,8 @@ public class CommonTableService {
 
 	@Autowired
 	private CommonTableDAO tableDAO;
-	
-	public Map<String, String> getAllTableOption(){
+
+	public Map<String, String> getAllTableOption() {
 		return tableDAO.getAllTableOption();
 	}
 

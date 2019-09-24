@@ -21,23 +21,23 @@ public class EntityService {
 	private CommonTableDAO tableDAO;
 
 	public void genNativeEntity(String tableName) {
-		String fileName = GenStringUtil.firstToUpper(tableName)+".java";
+		String fileName = GenStringUtil.firstToUpper(tableName) + ".java";
 		Map<String, String> metaDataMap = this.tableDAO.getTabelMetaData(tableName);
 		ClazzBuilder entityClzBuilder = new ClazzBuilder(tableName);
 		for (Entry<String, String> mapEntry : metaDataMap.entrySet()) {
-			Field columnField = new Field(mapEntry.getKey(), DataType.getDataType(mapEntry.getValue()));
+			Field columnField = new Field(mapEntry.getKey().toLowerCase(), DataType.getDataType(mapEntry.getValue()));
 			entityClzBuilder = entityClzBuilder.buildGetterSetter(columnField);
 		}
-		
+
 		System.out.print(entityClzBuilder.buildClazz().genCode());
 		File file = new File("");
-		System.out.println(file.getAbsolutePath()+"\\src\\main\\java\\entity");
-		String packeagePath=file.getAbsolutePath()+"\\\\src\\\\main\\\\java\\\\entity";
+		System.out.println(file.getAbsolutePath() + "\\src\\main\\java\\entity");
+		String packeagePath = file.getAbsolutePath() + "\\\\src\\\\main\\\\java\\\\entity";
 		File destPath = new File(packeagePath);
-		if(!destPath.exists()) {
+		if (!destPath.exists()) {
 			destPath.mkdirs();
 		}
-		GenUtil.writefile(destPath+"\\"+fileName, entityClzBuilder.buildClazz().genCode());
+		GenUtil.writefile(destPath + "\\" + fileName, entityClzBuilder.buildClazz().genCode());
 	}
 
 }
