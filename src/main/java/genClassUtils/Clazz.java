@@ -1,5 +1,7 @@
 package genClassUtils;
 
+import java.util.Iterator;
+
 public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 
 	private String className = "";
@@ -14,6 +16,14 @@ public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 	public String genCode() {
 		StringBuilder clzzString = new StringBuilder();
 		clzzString.append(changeLine);
+		if (this.annotation.size() > 0) {
+			Iterator<Annotation> it = this.annotation.iterator();
+			while (it.hasNext()) {
+				clzzString.append(changeLine);
+				clzzString.append(it.next().genCode());
+			}
+			clzzString.append(changeLine);
+		}
 		clzzString.append(this.accessLevel.getAccLevelText() + emptySpace);
 		clzzString.append("class " + this.className);
 		if (this.isSupportGeneric) {
@@ -59,13 +69,15 @@ public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 		myfield.setDataType(DataType.BOOLEAN);
 		Field myfield1 = new Field("address");
 		Field myfield2 = new Field("name");
-//		Method method = new Method("MyTestMethod", "MyContent");
+		myfield2.getAnnotation().add(new Annotation("Overrid"));
+		Method method = new Method("MyTestMethod", "MyContent");
+		method.getAnnotation().add(new Annotation("Overrid"));
 //		method.setReturnType(null);
 //		Parameter param = new Parameter("MyParam");
 //		Parameter param2 = new Parameter("MyParam2");
 //		method.getParameters().add(param);
-		String clazz = new ClazzBuilder("MyClass").buildGetterSetter(myfield).buildGetterSetter(myfield1)
-				.buildGetterSetter(myfield2).addGeneric("Long").buildClazz().genCode();
+		String clazz = new ClazzBuilder("MyClass").addAnnotation(new Annotation("Entity")).buildGetterSetter(myfield).buildGetterSetter(myfield1)
+				.buildGetterSetter(myfield2).addMethod(method).addGeneric("Long").buildClazz().genCode();
 
 		System.out.print(clazz);
 //		System.out.println(Clazz.class.getProtectionDomain());
@@ -98,7 +110,7 @@ public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 	public void setClassName(String className) {
 		this.className = className;
 	}
-	
+
 	public AccessLevel getAccessLevel() {
 		return accessLevel;
 	}

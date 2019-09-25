@@ -4,6 +4,8 @@ public class Interface extends CommonClazz implements AutoGen {
 
 	private String interfaceName = "";
 
+	private final AccessLevel accessLevel = AccessLevel.PUBLIC;
+
 	public Interface(String interfaceName) {
 		this.interfaceName = interfaceName;
 	}
@@ -20,7 +22,8 @@ public class Interface extends CommonClazz implements AutoGen {
 	public String genCode() {
 		StringBuilder interfaceBuilder = new StringBuilder();
 		interfaceBuilder.append(changeLine);
-		interfaceBuilder.append("");
+		interfaceBuilder.append(this.accessLevel.getAccLevelText() + emptySpace);
+		interfaceBuilder.append("interface " + this.interfaceName);
 		return null;
 	}
 

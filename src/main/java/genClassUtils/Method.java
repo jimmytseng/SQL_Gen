@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class Method implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractCheck {
+public class Method extends ReflectClazz implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractCheck {
 
 	public Method(String methodName) {
 		this.methodName = methodName;
@@ -44,6 +44,14 @@ public class Method implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractC
 	public String genCode() {
 		StringBuilder methodBuilder = new StringBuilder();
 		methodBuilder.append(changeLineAndSpace);
+		if (this.annotation.size() > 0) {
+			Iterator<Annotation> it = this.annotation.iterator();
+			while (it.hasNext()) {
+				methodBuilder.append(changeLineAndSpace);
+				methodBuilder.append(it.next().genCode());
+			}
+			methodBuilder.append(changeLineAndSpace);
+		}
 		if (isAbstract)
 			methodBuilder.append("abstract ");
 		else
@@ -78,7 +86,7 @@ public class Method implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractC
 			methodBuilder.append(startCurl);
 			methodBuilder.append(changeLineAndSpace);
 			if (this.content != null) {
-				methodBuilder.append("\t"+content);
+				methodBuilder.append("\t" + content);
 				methodBuilder.append(";");
 				methodBuilder.append(changeLineAndSpace);
 			}

@@ -1,6 +1,8 @@
 package genClassUtils;
 
-public class Parameter implements AutoGen, IsFinalCheck {
+import java.util.Iterator;
+
+public class Parameter extends ReflectClazz implements AutoGen, IsFinalCheck {
 
 	public Parameter(String paraName) {
 		this.paraName = paraName;
@@ -48,6 +50,13 @@ public class Parameter implements AutoGen, IsFinalCheck {
 	@Override
 	public String genCode() {
 		StringBuilder paraBuilder = new StringBuilder();
+		if (this.annotation.size() > 0) {
+			Iterator<Annotation> it = this.annotation.iterator();
+			while (it.hasNext()) {
+				paraBuilder.append(it.next().genCode());
+				paraBuilder.append(emptySpace);
+			}
+		}
 		if (this.getIsFinal())
 			paraBuilder.append("final ");
 		paraBuilder.append(this.dataType.getDataType() + emptySpace);

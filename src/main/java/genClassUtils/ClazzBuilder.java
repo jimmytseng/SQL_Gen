@@ -20,6 +20,11 @@ public class ClazzBuilder {
 		return this;
 	}
 
+	public ClazzBuilder addAnnotation(Annotation annotation) {
+		this.clazz.getAnnotation().add(annotation);
+		return this;
+	}
+
 	public ClazzBuilder addGeneric(String genericType) {
 		this.clazz.isSupportGeneric = true;
 		this.clazz.getGenerics().add(genericType);

@@ -1,6 +1,8 @@
 package genClassUtils;
 
-public class Field implements AutoGen, IsFinalCheck, IsStaticCheck {
+import java.util.Iterator;
+
+public class Field extends ReflectClazz implements AutoGen, IsFinalCheck, IsStaticCheck {
 
 	private DataType dataType = DataType.STRING;
 
@@ -64,6 +66,13 @@ public class Field implements AutoGen, IsFinalCheck, IsStaticCheck {
 	@Override
 	public String genCode() {
 		StringBuilder fieldBuilder = new StringBuilder();
+		if (this.annotation.size() > 0) {
+			Iterator<Annotation> it = this.annotation.iterator();
+			while (it.hasNext()) {
+				fieldBuilder.append(changeLineAndSpace);
+				fieldBuilder.append(it.next().genCode());
+			}
+		}
 		fieldBuilder.append(changeLineAndSpace + this.accessLevel.getAccLevelText() + emptySpace);
 		if (this.isStatic)
 			fieldBuilder.append("static ");
