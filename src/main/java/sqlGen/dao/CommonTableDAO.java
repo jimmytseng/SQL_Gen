@@ -1,5 +1,6 @@
 package sqlGen.dao;
 
+import java.sql.DatabaseMetaData;
 import java.sql.JDBCType;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -23,17 +24,17 @@ public class CommonTableDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	public Map<String, String> getAllTableOption() {
-		String queryString = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES ORDER BY TABLE_NAME ";
-		return this.jdbcTemplate.query(queryString, new ResultSetExtractor<Map<String, String>>() {
-			@Override
-			public Map<String, String> extractData(ResultSet rs) throws SQLException, DataAccessException {
-				HashMap<String, String> tableNameMap = new HashMap<String, String>();
-				while (rs.next()) {
-					tableNameMap.put(rs.getString(1), rs.getString(1));
-				}
-				return tableNameMap;
+		try {
+			DatabaseMetaData md = jdbcTemplate.getDataSource().getConnection().getMetaData();
+			ResultSet rs = md.getTables(null, "dbo", "%", null);
+			HashMap<String, String> tableNameMap = new HashMap<String, String>();
+			while (rs.next()) {
+				tableNameMap.put(rs.getString("TABLE_NAME"), rs.getString("TABLE_NAME"));
 			}
-		});
+			return tableNameMap;
+		} catch (SQLException e) {
+			return null;
+		}
 	}
 
 	public List<String> getTableColumns(String tableName) {
