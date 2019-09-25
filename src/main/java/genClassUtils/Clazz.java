@@ -2,9 +2,11 @@ package genClassUtils;
 
 import java.util.Iterator;
 
-public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
+public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck, IsAbstractCheck {
 
 	private String className = "";
+
+	private Boolean isAbstract = false;
 
 	private Boolean isFinal = false;
 
@@ -24,6 +26,8 @@ public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 			}
 			clzzString.append(changeLine);
 		}
+		if (this.isAbstract)
+			clzzString.append("abstract ");
 		clzzString.append(this.accessLevel.getAccLevelText() + emptySpace);
 		clzzString.append("class " + this.className);
 		if (this.isSupportGeneric) {
@@ -76,21 +80,11 @@ public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 //		Parameter param = new Parameter("MyParam");
 //		Parameter param2 = new Parameter("MyParam2");
 //		method.getParameters().add(param);
-		String clazz = new ClazzBuilder("MyClass").addAnnotation(new Annotation("Entity")).buildGetterSetter(myfield).buildGetterSetter(myfield1)
-				.buildGetterSetter(myfield2).addMethod(method).addGeneric("Long").buildClazz().genCode();
+		String clazz = new ClazzBuilder("MyClass").addAnnotation(new Annotation("Entity")).buildGetterSetter(myfield)
+				.buildGetterSetter(myfield1).buildGetterSetter(myfield2).addMethod(method).addGeneric("Long")
+				.buildClazz().genCode();
 
 		System.out.print(clazz);
-//		System.out.println(Clazz.class.getProtectionDomain());
-//		System.out.println(Clazz.class.getProtectionDomain().getCodeSource());
-//		System.out.println(Clazz.class.getProtectionDomain().getCodeSource().getLocation());
-//		System.out.println(Clazz.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-//		System.out.println(Clazz.class.getSimpleName());
-//		File file = new File("");
-//		System.out.println(file.getAbsolutePath() + "\\src\\main\\java\\entity");
-//		File destFile = new File(file.getAbsolutePath() + "\\src\\main\\java\\entity");
-//		if (!destFile.exists()) {
-//			destFile.mkdirs();
-//		}
 	}
 
 	@Override
@@ -101,6 +95,16 @@ public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck {
 	@Override
 	public void setIsFinal(Boolean isFinal) {
 		this.isFinal = isFinal;
+	}
+
+	@Override
+	public Boolean getIsAbstract() {
+		return isAbstract;
+	}
+
+	@Override
+	public void setIsAbstract(Boolean isAbstract) {
+		this.isAbstract = isAbstract;
 	}
 
 	public String getClassName() {
