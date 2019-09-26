@@ -24,9 +24,11 @@ public class CommonTableDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	public Map<String, String> getAllTableOption() {
+		DatabaseMetaData md = null;
+		ResultSet rs = null;
 		try {
-			DatabaseMetaData md = jdbcTemplate.getDataSource().getConnection().getMetaData();
-			ResultSet rs = md.getTables(null, "dbo", "%", null);
+			md = jdbcTemplate.getDataSource().getConnection().getMetaData();
+			rs = md.getTables(null, "dbo", "%", null);
 			HashMap<String, String> tableNameMap = new HashMap<String, String>();
 			while (rs.next()) {
 				tableNameMap.put(rs.getString("TABLE_NAME"), rs.getString("TABLE_NAME"));
@@ -34,6 +36,14 @@ public class CommonTableDAO {
 			return tableNameMap;
 		} catch (SQLException e) {
 			return null;
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
@@ -57,9 +67,10 @@ public class CommonTableDAO {
 	}
 
 	public Map<String, String> getTableByFilterName(String filterName) {
+		ResultSet rs = null;
 		try {
 			DatabaseMetaData md = jdbcTemplate.getDataSource().getConnection().getMetaData();
-			ResultSet rs = md.getTables(null, "dbo", filterName+"%", null);
+			rs = md.getTables(null, "dbo", filterName + "%", null);
 			HashMap<String, String> tableNameMap = new HashMap<String, String>();
 			while (rs.next()) {
 				tableNameMap.put(rs.getString("TABLE_NAME"), rs.getString("TABLE_NAME"));
@@ -67,6 +78,14 @@ public class CommonTableDAO {
 			return tableNameMap;
 		} catch (SQLException e) {
 			return null;
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

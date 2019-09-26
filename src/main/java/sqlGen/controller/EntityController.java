@@ -27,10 +27,21 @@ public class EntityController {
 		return "entity/native";
 	}
 	
+	@RequestMapping("/jpa")
+	public String handler_jpa(ModelMap modelMap) {
+		return "entity/jpa";
+	}
+	
 	@RequestMapping("/genNativeEntity")
 	public String genNativeEntity(@RequestParam String tableName) {
 		this.entityService.genNativeEntity(tableName);
 		return "entity/native";
+	}
+	
+	@RequestMapping("/genJpaEntity")
+	public String genJpaEntity(@RequestParam String tableName) {
+		this.entityService.genJpaEntity(tableName);
+		return "entity/jpa";
 	}
 	
 	@ModelAttribute

@@ -7,31 +7,21 @@
         </div>
          <ul class="list-unstyled components">
 	          <li class="active">
-	                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">SQL_Gen</a>
-	                <ul class="collapse list-unstyled" id="homeSubmenu">
+	                <a href="#SQL_Gen" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">SQL_Gen</a>
+	                <ul class="collapse list-unstyled" id="SQL_Gen">
 	                    <li><a href="${pageContext.request.contextPath}/sql/native">native_sql</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/sql/jdbctemplate">jdbc_template</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/sql/jpa">spring_jpa</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/sql/hibernate">hibernate</a></li>
 	                </ul>
 	          </li>
-	          <li>
-              </li>
-          	  <li><a href="${pageContext.request.contextPath}/entity/native">Entity_Gen</a></li> 
-         <!--      <li>
-	               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-	                <ul class="collapse list-unstyled" id="pageSubmenu">
-	                    <li><a href="#">Page 1</a></li>
-	                    <li><a href="#">Page 2</a></li>
-	                    <li><a href="#">Page 3</a></li>
-	                </ul>
-          	  </li>
-              <li>
-              	    <a href="#">Portfolio</a>
-              </li>
-              <li>
-                    <a href="#">Contact</a>
-              </li>-->
+	          <li class="active">
+	          		<a href="#Entity_Gen" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Entity_Gen</a>
+	          		<ul class="collapse list-unstyled" id="Entity_Gen">
+          	      		 <li><a href="${pageContext.request.contextPath}/entity/native">CommonEntity</a></li>
+          	      		 <li><a href="${pageContext.request.contextPath}/entity/jpa">JpaEntity</a></li>
+          	        </ul>
+          	  </li> 
          </ul>
 	</nav>
 </div>
