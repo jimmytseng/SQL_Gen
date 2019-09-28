@@ -48,7 +48,7 @@ public class EntityService {
 			entityColumn.stream().filter(field -> field.getFieldName().equals(keyColumn))
 					.forEach(field -> field.getAnnotation().add(new Annotation("Id")));
 			entityColumn.stream().forEach(field -> {
-				field.getAnnotation().add(new ColumnAnnotation(field.getFieldName()));
+				field.getAnnotation().add(new ColumnAnnotation("\"" + field.getFieldName() + "\""));
 			});
 			clazzBuilder.buildAllGetterSetter(entityColumn);
 		}
