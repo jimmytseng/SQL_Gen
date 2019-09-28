@@ -1,6 +1,9 @@
 package genClassUtils;
 
 import java.util.Iterator;
+import java.util.Objects;
+
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class Field extends ReflectClazz implements IsFinalCheck, IsStaticCheck {
 
@@ -93,6 +96,35 @@ public class Field extends ReflectClazz implements IsFinalCheck, IsStaticCheck {
 	@Override
 	public void setIsFinal(Boolean isFinal) {
 		this.isFinal = isFinal;
+	}
+
+	@Override
+	public String toString() {
+		return fieldName;
+
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(17, 37).append(fieldName).append(dataType.getDataType()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Field other = (Field) obj;
+		if (!Objects.equals(this.fieldName, other.fieldName)) {
+			return false;
+		}
+		if (!Objects.equals(this.dataType.getDataType(), other.dataType.getDataType())) {
+			return false;
+		}
+		return true;
 	}
 
 }
