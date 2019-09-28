@@ -32,6 +32,8 @@ public class Method extends ReflectClazz implements IsFinalCheck, IsStaticCheck,
 
 	private String content;
 
+	private String returnValue;
+
 	private Boolean isFinal = false;
 
 	private Boolean isStatic = false;
@@ -163,4 +165,11 @@ public class Method extends ReflectClazz implements IsFinalCheck, IsStaticCheck,
 		this.content = content;
 	}
 
+	public String getReturnValue() {
+		return returnValue;
+	}
+
+	public void setReturnValue(String returnValue) {
+		this.returnValue = returnValue;
+	}
 }
