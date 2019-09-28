@@ -67,4 +67,11 @@ public class ClazzBuilder {
 		return this;
 	}
 
+	public ClazzBuilder buildAllGetterSetter(Set<Field> fields) {
+		fields.stream().forEach(field -> {
+			addField(field);
+			addGetterSetter(field);
+		});
+		return this;
+	}
 }
