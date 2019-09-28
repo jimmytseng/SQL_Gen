@@ -3,18 +3,22 @@ package sqlGen.core.entity;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import genClassUtils.CommonClazz;
+import genClassUtils.Field;
 
-public abstract class EntityMetaData extends CommonClazz {
+public class EntityMetaData {
 
 	private String tableName = "";
-	
-	private Set<String> primaryKeys = new LinkedHashSet<>();
-	
-	private Set<String> entityColumns = new LinkedHashSet<>();
 
-	public EntityMetaData() {
-		super();
+	private Set<String> primaryKeys = new LinkedHashSet<>();
+
+	private Set<Field> entityColumns = new LinkedHashSet<>();
+
+	public Set<Field> getEntityColumns() {
+		return entityColumns;
+	}
+
+	public void setEntityColumns(Set<Field> entityColumns) {
+		this.entityColumns = entityColumns;
 	}
 
 	public String getTableName() {
@@ -31,14 +35,6 @@ public abstract class EntityMetaData extends CommonClazz {
 
 	public void setPrimaryKeys(Set<String> primaryKeys) {
 		this.primaryKeys = primaryKeys;
-	}
-
-	public Set<String> getEntityColumns() {
-		return entityColumns;
-	}
-
-	public void setEntityColumns(Set<String> entityColumns) {
-		this.entityColumns = entityColumns;
 	}
 
 }

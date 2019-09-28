@@ -17,6 +17,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
+import genClassUtils.DataType;
+import genClassUtils.Field;
+import sqlGen.core.entity.EntityMetaData;
+import sqlGen.core.entity.jpa.annotation.ColumnAnnotation;
+
 @Repository
 public class CommonTableDAO {
 
@@ -103,6 +108,39 @@ public class CommonTableDAO {
 				return metaDataMap;
 			}
 		});
+	}
+
+	public EntityMetaData getEntityMetaData(String tableName) {
+		EntityMetaData entityMetaData = new EntityMetaData();
+		entityMetaData.setTableName(tableName);
+		DatabaseMetaData md = null;
+		ResultSet rs = null;
+		ResultSet primaryKeyRs = null;
+		try {
+			md = jdbcTemplate.getDataSource().getConnection().getMetaData();
+			rs = md.getColumns(null, "dbo", tableName, null);
+			while (rs.next()) {
+				String columenName = rs.getString("COLUMN_NAME");
+				String columnType = rs.getString("TYPE_NAME");
+				Field field = new Field(columenName, DataType.getDataType(columnType));
+				entityMetaData.getEntityColumns().add(field);
+			}
+			primaryKeyRs = md.getPrimaryKeys(null, "dbo", tableName);
+			while (primaryKeyRs.next()) {
+				entityMetaData.getPrimaryKeys().add(primaryKeyRs.getString(4));
+			}
+			return entityMetaData;
+		} catch (SQLException e) {
+			return null;
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }
