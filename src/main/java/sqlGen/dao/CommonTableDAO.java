@@ -89,7 +89,7 @@ public class CommonTableDAO {
 		}
 	}
 
-	public Map<String, String> getTabelMetaData(String tableName) {
+	public Map<String, String> getTabelColumnMetaData(String tableName) {
 		String queryString = String.format("SELECT * FROM %s", tableName);
 		return this.jdbcTemplate.query(queryString, new ResultSetExtractor<Map<String, String>>() {
 			@Override
