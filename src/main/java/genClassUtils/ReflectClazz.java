@@ -3,7 +3,7 @@ package genClassUtils;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class ReflectClazz {
+public abstract class ReflectClazz implements AutoGen{
 
 	protected Set<Annotation> annotation = new LinkedHashSet<>();
 

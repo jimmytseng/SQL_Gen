@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class Method extends ReflectClazz implements AutoGen, IsFinalCheck, IsStaticCheck, IsAbstractCheck {
+public class Method extends ReflectClazz implements IsFinalCheck, IsStaticCheck, IsAbstractCheck {
 
 	public Method(String methodName) {
 		this.methodName = methodName;

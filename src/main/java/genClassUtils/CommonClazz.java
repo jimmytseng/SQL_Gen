@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class CommonClazz extends ReflectClazz{
+public abstract class CommonClazz extends ReflectClazz{
 
 	protected Set<String> generics = new LinkedHashSet<>();
 

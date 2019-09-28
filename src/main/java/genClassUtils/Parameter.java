@@ -2,7 +2,7 @@ package genClassUtils;
 
 import java.util.Iterator;
 
-public class Parameter extends ReflectClazz implements AutoGen, IsFinalCheck {
+public class Parameter extends ReflectClazz implements IsFinalCheck {
 
 	public Parameter(String paraName) {
 		this.paraName = paraName;

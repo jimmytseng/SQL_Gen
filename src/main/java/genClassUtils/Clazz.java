@@ -2,7 +2,7 @@ package genClassUtils;
 
 import java.util.Iterator;
 
-public class Clazz extends CommonClazz implements AutoGen, IsFinalCheck, IsAbstractCheck {
+public class Clazz extends CommonClazz implements IsFinalCheck, IsAbstractCheck {
 
 	private String className = "";
 

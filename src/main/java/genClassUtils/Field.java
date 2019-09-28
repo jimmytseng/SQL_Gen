@@ -2,7 +2,7 @@ package genClassUtils;
 
 import java.util.Iterator;
 
-public class Field extends ReflectClazz implements AutoGen, IsFinalCheck, IsStaticCheck {
+public class Field extends ReflectClazz implements IsFinalCheck, IsStaticCheck {
 
 	private DataType dataType = DataType.STRING;
 
