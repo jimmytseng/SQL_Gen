@@ -45,7 +45,7 @@ public class Annotation implements AutoGen {
 				}
 				commaFlag = true;
 				annoBuilder.append(method.getMethodName());
-				annoBuilder.append(emptySpace);
+				annoBuilder.append("=");
 				annoBuilder.append(method.getReturnValue());
 			}
 			annoBuilder.append(")");
