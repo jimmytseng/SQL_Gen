@@ -1,5 +1,6 @@
 package genClassUtils;
 
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -13,6 +14,14 @@ public class Annotation implements AutoGen {
 
 	protected Set<Method> methods = new LinkedHashSet<>();
 
+	public Set<Method> getMethods() {
+		return methods;
+	}
+
+	public void setMethods(Set<Method> methods) {
+		this.methods = methods;
+	}
+
 	public String getAnnotationName() {
 		return annotationName;
 	}
@@ -25,6 +34,22 @@ public class Annotation implements AutoGen {
 		StringBuilder annoBuilder = new StringBuilder();
 		annoBuilder.append("@");
 		annoBuilder.append(this.annotationName);
+		if (this.methods.size() > 0) {
+			annoBuilder.append("(");
+			Iterator<Method> it = this.methods.iterator();
+			while (it.hasNext()) {
+				Method method = it.next();
+				Boolean commaFlag = false;
+				if (commaFlag) {
+					annoBuilder.append(", ");
+				}
+				commaFlag = true;
+				annoBuilder.append(method.getMethodName());
+				annoBuilder.append(emptySpace);
+				annoBuilder.append(method.getReturnValue());
+			}
+			annoBuilder.append(")");
+		}
 		return annoBuilder.toString();
 	}
 
