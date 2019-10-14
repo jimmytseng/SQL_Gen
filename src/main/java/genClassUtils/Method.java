@@ -15,32 +15,37 @@ public class Method extends ReflectClazz implements IsFinalCheck, IsStaticCheck,
 		this.content = content;
 	}
 
+	public Method(String methodName, DataType returnType) {
+		this.methodName = methodName;
+		this.returnType = returnType;
+	}
+
 	public Method(String methodName, DataType returnType, String content) {
 		this.methodName = methodName;
 		this.content = content;
 		this.returnType = returnType;
 	}
 
-	private final static String startParentheses = "(";
-	private final static String endParentheses = ")";
+	protected final static String startParentheses = "(";
+	protected final static String endParentheses = ")";
 
-	private AccessLevel accessLevel = AccessLevel.PUBLIC;
+	protected AccessLevel accessLevel = AccessLevel.PUBLIC;
 
-	private String methodName = "";
+	protected String methodName = "";
 
-	private DataType returnType = DataType.STRING;
+	protected DataType returnType = DataType.STRING;
 
-	private String content;
+	protected String content;
 
-	private String returnValue;
+	protected String returnValue;
 
-	private Boolean isFinal = false;
+	protected Boolean isFinal = false;
 
-	private Boolean isStatic = false;
+	protected Boolean isStatic = false;
 
-	private Boolean isAbstract = false;
+	protected Boolean isAbstract = false;
 
-	private Set<Parameter> parameters = new HashSet<>();
+	protected Set<Parameter> parameters = new HashSet<>();
 
 	@Override
 	public String genCode() {

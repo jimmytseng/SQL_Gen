@@ -1,6 +1,6 @@
 package genClassUtils;
 
-public class Interface extends CommonClazz implements AutoGen {
+public class Interface extends CommonClazz<InterfaceMethod> implements AutoGen {
 
 	private String interfaceName = "";
 
@@ -24,7 +24,13 @@ public class Interface extends CommonClazz implements AutoGen {
 		interfaceBuilder.append(changeLine);
 		interfaceBuilder.append(this.accessLevel.getAccLevelText() + emptySpace);
 		interfaceBuilder.append("interface " + this.interfaceName);
-		return null;
+		interfaceBuilder.append("");
+		interfaceBuilder.append("");
+		interfaceBuilder.append("");
+		interfaceBuilder.append("");
+		interfaceBuilder.append("");
+		interfaceBuilder.append("");
+		return interfaceBuilder.toString();
 	}
 
 }
