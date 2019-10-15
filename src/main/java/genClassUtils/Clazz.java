@@ -2,7 +2,7 @@ package genClassUtils;
 
 import java.util.Iterator;
 
-public class Clazz extends CommonClazz implements IsFinalCheck, IsAbstractCheck {
+public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstractCheck {
 
 	private String className = "";
 
@@ -69,22 +69,34 @@ public class Clazz extends CommonClazz implements IsFinalCheck, IsAbstractCheck 
 	}
 
 	public static void main(String[] args) {
-		Field myfield = new Field("account");
-		myfield.setDataType(DataType.BOOLEAN);
-		Field myfield1 = new Field("address");
-		Field myfield2 = new Field("name");
-		myfield2.getAnnotation().add(new Annotation("Overrid"));
-		Method method = new Method("MyTestMethod", "MyContent");
-		method.getAnnotation().add(new Annotation("Overrid"));
+//		Field myfield = new Field("account");
+//		myfield.setDataType(DataType.BOOLEAN);
+//		Field myfield1 = new Field("address");
+//		Field myfield2 = new Field("name");
+//		myfield2.getAnnotation().add(new Annotation("Override"));
+//		InterfaceMethod method = new InterfaceMethod("MyTestMethod");
+//		method.getAnnotation().add(new Annotation("Overrid"));
 //		method.setReturnType(null);
 //		Parameter param = new Parameter("MyParam");
 //		Parameter param2 = new Parameter("MyParam2");
 //		method.getParameters().add(param);
-		String clazz = new ClazzBuilder("MyClass").addAnnotation(new Annotation("Entity")).buildGetterSetter(myfield)
-				.buildGetterSetter(myfield1).buildGetterSetter(myfield2).addMethod(method).addGeneric("Long")
-				.buildClazz().genCode();
-
-		System.out.print(clazz);
+//		method.getParameters().add(param2);
+//		String clazz = new ClazzBuilder("MyClass").addAnnotation(new Annotation("Entity")).buildGetterSetter(myfield)
+//				.buildGetterSetter(myfield1).buildGetterSetter(myfield2).addMethod(method).addGeneric("Long")
+//				.buildClazz().genCode();
+//
+//		System.out.print(clazz);
+		
+		//Interface
+//		Interface interClazz = new Interface("MyInterface");
+//		Interface extendsInterface = new Interface("JpaRepository");
+//		extendsInterface.getGenerics().add("CPCDeviceInfoEntity");
+//		extendsInterface.getGenerics().add("Integer");
+//		interClazz.getImplementInterfaces().add(extendsInterface);
+//		InterfaceMethod method1 = new InterfaceMethod("MyTestMethod");
+//		interClazz.getMethodSet().add(method1);
+//		System.out.println(interClazz.genCode());
+		
 	}
 
 	@Override
