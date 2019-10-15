@@ -24,12 +24,31 @@ public class Interface extends CommonClazz implements AutoGen {
 		interfaceBuilder.append(changeLine);
 		interfaceBuilder.append(this.accessLevel.getAccLevelText() + emptySpace);
 		interfaceBuilder.append("interface " + this.interfaceName);
-		interfaceBuilder.append("");
-		interfaceBuilder.append("");
-		interfaceBuilder.append("");
-		interfaceBuilder.append("");
-		interfaceBuilder.append("");
-		interfaceBuilder.append("");
+		if (this.isSupportGeneric) {
+			interfaceBuilder.append(this.genGenerics());
+		}
+		if (implementInterfaces.size() > 0) {
+			interfaceBuilder.append("extends ");
+			for (Interface interfaceImpl : this.implementInterfaces) {
+				interfaceBuilder.append(interfaceImpl.getInterfaceName() + interfaceImpl.genGenerics());
+			}
+		}
+		interfaceBuilder.append(startCurl);
+
+		if (this.fieldSet.size() > 0) {
+			fieldSet.forEach(field -> {
+				interfaceBuilder.append(field.genCode());
+			});
+		}
+
+		if (this.methodSet.size() > 0) {
+			methodSet.forEach(method -> {
+				interfaceBuilder.append(method.genCode());
+			});
+		}
+
+		interfaceBuilder.append(changeLine);
+		interfaceBuilder.append(endCurl);
 		return interfaceBuilder.toString();
 	}
 
