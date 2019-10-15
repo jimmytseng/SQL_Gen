@@ -1,6 +1,6 @@
 package genClassUtils;
 
-public class Interface extends CommonClazz<InterfaceMethod> implements AutoGen {
+public class Interface extends CommonClazz implements AutoGen {
 
 	private String interfaceName = "";
 

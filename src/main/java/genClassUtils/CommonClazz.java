@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public abstract class CommonClazz<T extends Method> extends ReflectClazz {
+public abstract class CommonClazz extends ReflectClazz {
 
 	protected Set<String> generics = new LinkedHashSet<>();
 
@@ -13,7 +13,7 @@ public abstract class CommonClazz<T extends Method> extends ReflectClazz {
 
 	protected Set<Field> fieldSet = new LinkedHashSet<>();
 
-	protected Set<T> methodSet = new LinkedHashSet<>();
+	protected Set<Method> methodSet = new LinkedHashSet<>();
 
 	protected Boolean isSupportGeneric = false;
 
@@ -49,15 +49,15 @@ public abstract class CommonClazz<T extends Method> extends ReflectClazz {
 		this.fieldSet.addAll(fieldSet);
 	}
 
-	public Set<T> getMethodSet() {
+	public Set<Method> getMethodSet() {
 		return methodSet;
 	}
 
-	public void setMethodSet(Set<T> methodSet) {
+	public void setMethodSet(Set<Method> methodSet) {
 		this.methodSet = methodSet;
 	}
 
-	public void addMethods(Set<T> methodSet) {
+	public void addMethods(Set<Method> methodSet) {
 		this.methodSet.addAll(methodSet);
 	}
 
