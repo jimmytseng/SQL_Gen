@@ -60,14 +60,14 @@ public class Method extends ReflectClazz implements IsFinalCheck, IsStaticCheck,
 			methodBuilder.append(changeLineAndSpace);
 		}
 		if (isAbstract)
-			methodBuilder.append("abstract ");
+			methodBuilder.append(NonAccessModifier.ABSTRACT.getModifer() + emptySpace);
 		else
 			methodBuilder.append(this.accessLevel.getAccLevelText() + emptySpace);
 
 		if (this.isStatic)
-			methodBuilder.append("static ");
+			methodBuilder.append(NonAccessModifier.STATIC.getModifer() + emptySpace);
 		if (this.isFinal)
-			methodBuilder.append("fianl ");
+			methodBuilder.append(NonAccessModifier.FINAL.getModifer() + emptySpace);
 		if (this.returnType == null) {
 			methodBuilder.append("void ");
 		} else {

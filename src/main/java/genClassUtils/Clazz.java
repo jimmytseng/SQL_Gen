@@ -10,7 +10,7 @@ public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstra
 
 	private Boolean isFinal = false;
 
-	private AccessLevel accessLevel = AccessLevel.PUBLIC;
+	private ClazzAccessLevel clazzAccessLevel = ClazzAccessLevel.PUBLIC;
 
 	private Clazz extendsClazz = null;
 
@@ -28,7 +28,7 @@ public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstra
 		}
 		if (this.isAbstract)
 			clzzString.append("abstract ");
-		clzzString.append(this.accessLevel.getAccLevelText() + emptySpace);
+		clzzString.append(this.clazzAccessLevel.getAccLevelText() + emptySpace);
 		clzzString.append("class " + this.className);
 		if (this.isSupportGeneric) {
 			clzzString.append(this.genGenerics());
@@ -86,8 +86,8 @@ public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstra
 //				.buildClazz().genCode();
 //
 //		System.out.print(clazz);
-		
-		//Interface
+
+		// Interface
 //		Interface interClazz = new Interface("MyInterface");
 //		Interface extendsInterface = new Interface("JpaRepository");
 //		extendsInterface.getGenerics().add("CPCDeviceInfoEntity");
@@ -96,7 +96,7 @@ public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstra
 //		InterfaceMethod method1 = new InterfaceMethod("MyTestMethod");
 //		interClazz.getMethodSet().add(method1);
 //		System.out.println(interClazz.genCode());
-		
+
 	}
 
 	@Override
@@ -127,12 +127,12 @@ public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstra
 		this.className = className;
 	}
 
-	public AccessLevel getAccessLevel() {
-		return accessLevel;
+	public ClazzAccessLevel getClazzAccessLevel() {
+		return clazzAccessLevel;
 	}
 
-	public void setAccessLevel(AccessLevel accessLevel) {
-		this.accessLevel = accessLevel;
+	public void setClazzAccessLevel(ClazzAccessLevel accessLevel) {
+		this.clazzAccessLevel = accessLevel;
 	}
 
 	public void addGetter(Field field) {
