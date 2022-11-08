@@ -2,6 +2,8 @@ package genClassUtils;
 
 import java.util.Iterator;
 
+import genClassUtils.enums.DataType;
+
 public class Parameter extends ReflectClazz implements IsFinalCheck {
 
 	public Parameter(String paraName) {

@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 import genClassUtils.Annotation;
 import genClassUtils.ClazzBuilder;
-import genClassUtils.DataType;
 import genClassUtils.Field;
 import genClassUtils.GenStringUtil;
 import genClassUtils.GenUtil;
 import genClassUtils.Method;
+import genClassUtils.enums.DataType;
 import sqlGen.core.entity.EntityMetaData;
 import sqlGen.core.entity.jpa.annotation.ColumnAnnotation;
 import sqlGen.dao.CommonTableDAO;

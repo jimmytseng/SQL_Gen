@@ -2,6 +2,9 @@ package genClassUtils;
 
 import java.util.Iterator;
 
+import genClassUtils.enums.AccessLevel;
+import genClassUtils.enums.DataType;
+
 public class InterfaceMethod extends Method {
 
 	public InterfaceMethod(String methodName) {

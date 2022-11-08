@@ -1,4 +1,4 @@
-package genClassUtils;
+package genClassUtils.enums;
 
 public enum NonAccessModifier {
 
@@ -35,8 +35,7 @@ public enum NonAccessModifier {
 		case "volatile":
 			return NonAccessModifier.VOLATILE;
 		default:
-			// throw ex
-			return null;
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -55,8 +54,7 @@ public enum NonAccessModifier {
 		case VOLATILE:
 			return NonAccessModifier.VOLATILE.getModifer();
 		default:
-			// throw ex
-			return null;
+			throw new IllegalArgumentException();
 		}
 	}
 }

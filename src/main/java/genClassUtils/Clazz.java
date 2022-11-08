@@ -2,6 +2,8 @@ package genClassUtils;
 
 import java.util.Iterator;
 
+import genClassUtils.enums.ClazzAccessLevel;
+
 public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstractCheck {
 
 	private String className = "";

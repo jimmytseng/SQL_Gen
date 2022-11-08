@@ -4,6 +4,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import genClassUtils.enums.AccessLevel;
+import genClassUtils.enums.DataType;
+import genClassUtils.enums.NonAccessModifier;
+
 public class Method extends ReflectClazz implements IsFinalCheck, IsStaticCheck, IsAbstractCheck {
 
 	public Method(String methodName) {

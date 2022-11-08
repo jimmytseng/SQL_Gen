@@ -1,5 +1,7 @@
 package genClassUtils;
 
+import genClassUtils.enums.AccessLevel;
+
 public class Interface extends CommonClazz<InterfaceMethod> implements AutoGen {
 
 	private String interfaceName = "";

@@ -61,7 +61,7 @@ public class GenUtil {
 
 	public static void main(String[] args) {
 		// GenReportMain GF = new GenReportMain();
-		String destinationLoc = "C://API/GenTest.java";
+		String destinationLoc = "C://API/GenTest.java";   
 //		File file = new File(destinationLoc);
 //		file.mkdirs();
 		StringBuilder genBuilder = new StringBuilder();
@@ -70,7 +70,7 @@ public class GenUtil {
 		genBuilder.append("public static void main(String[] args) { \n");
 		genBuilder.append("\t System.out.print(1");
 		genBuilder.append(");");
-		genBuilder.append("\t }\n");
+		genBuilder.append("\t\n }\n");
 		genBuilder.append("}\n");
 		writefile(destinationLoc, genBuilder);
 	}

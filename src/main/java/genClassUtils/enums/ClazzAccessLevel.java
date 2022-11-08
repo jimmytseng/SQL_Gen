@@ -1,7 +1,7 @@
-package genClassUtils;
+package genClassUtils.enums;
 
 public enum ClazzAccessLevel {
- 
+
 	PUBLIC("public"), DEFAULT("");
 
 	private String accessLevelText;
@@ -34,8 +34,9 @@ public enum ClazzAccessLevel {
 			return PUBLIC.getAccLevelText();
 		case DEFAULT:
 			return DEFAULT.getAccLevelText();
+		default:
+			throw new IllegalArgumentException();
 		}
-		return "public";
 	}
 
 }

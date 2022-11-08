@@ -1,4 +1,4 @@
-package genClassUtils;
+package genClassUtils.enums;
 
 public enum DataType {
 

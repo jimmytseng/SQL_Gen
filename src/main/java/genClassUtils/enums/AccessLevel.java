@@ -1,4 +1,4 @@
-package genClassUtils;
+package genClassUtils.enums;
 
 public enum AccessLevel {
 
@@ -20,16 +20,18 @@ public enum AccessLevel {
 
 	public AccessLevel getEnumByText(String text) {
 		String compareText = text.toLowerCase();
-		if (PUBLIC.getAccLevelText().equals(compareText)) {
+		switch (compareText) {
+		case "public":
 			return PUBLIC;
-		} else if (DEFAULT.getAccLevelText().equals(compareText)) {
+		case "":
 			return DEFAULT;
-		} else if (PROTECTED.getAccLevelText().equals(compareText)) {
+		case "protected":
 			return PROTECTED;
-		} else if (PRIVATE.getAccLevelText().equals(compareText)) {
+		case "private":
 			return PRIVATE;
+		default:
+			throw new IllegalArgumentException();
 		}
-		return PUBLIC;
 	}
 
 	public String getTextByEnum(AccessLevel accessEnum) {
@@ -42,7 +44,8 @@ public enum AccessLevel {
 			return PROTECTED.getAccLevelText();
 		case PRIVATE:
 			return PRIVATE.getAccLevelText();
+		default:
+			throw new IllegalArgumentException();
 		}
-		return "public";
 	}
 }

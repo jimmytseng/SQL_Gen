@@ -5,6 +5,9 @@ import java.util.Objects;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import genClassUtils.enums.AccessLevel;
+import genClassUtils.enums.DataType;
+
 public class Field extends ReflectClazz implements IsFinalCheck, IsStaticCheck {
 
 	private DataType dataType = DataType.STRING;
