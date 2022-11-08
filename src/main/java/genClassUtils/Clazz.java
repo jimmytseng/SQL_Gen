@@ -4,10 +4,20 @@ import java.util.Iterator;
 
 import org.apache.commons.lang3.StringUtils;
 
+import genClassUtils._interface.Interface;
+import genClassUtils.annotation.Annotation;
+import genClassUtils.annotation.ClazzAnnotation;
+import genClassUtils.annotation.MethodAnnotation;
 import genClassUtils.enums.ClazzAccessLevel;
 import genClassUtils.enums.DataType;
+import genClassUtils.field.Field;
+import genClassUtils.method.ClazzMethod;
+import genClassUtils.method.InterfaceMethod;
+import genClassUtils.method.Method;
+import genClassUtils.param.Parameter;
+import genClassUtils.utility.GenStringUtil;
 
-public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstractCheck {
+public class Clazz extends CommonClazz<ClazzMethod> implements IsFinalCheck, IsAbstractCheck {
 
 	private String className = "";
 
@@ -29,7 +39,7 @@ public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstra
 		clzzString.append(";");
 		clzzString.append(changeLine);
 		if (this.annotation.size() > 0) {
-			Iterator<Annotation> it = this.annotation.iterator();
+			Iterator<ClazzAnnotation> it = this.annotation.iterator();
 			while (it.hasNext()) {
 				clzzString.append(changeLine);
 				clzzString.append(it.next().genCode());
@@ -83,15 +93,14 @@ public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstra
 		myfield.setDataType(DataType.BOOLEAN);
 		Field myfield1 = new Field("address");
 		Field myfield2 = new Field("name");
-		myfield2.getAnnotation().add(new Annotation("Override"));
-		InterfaceMethod method = new InterfaceMethod("MyTestMethod");
-		method.getAnnotation().add(new Annotation("Overrid"));
+		ClazzMethod method = new ClazzMethod("MyTestMethod");
+		method.getAnnotation().add(new MethodAnnotation("Overrid"));
 		method.setReturnType(null);
 		Parameter param = new Parameter("MyParam");
 		Parameter param2 = new Parameter("MyParam2");
 		method.getParameters().add(param);
 		method.getParameters().add(param2);
-		String clazz = new ClazzBuilder("MyClass").setPackageName("genClassUtils").addAnnotation(new Annotation("Entity")).buildGetterSetter(myfield)
+		String clazz = new ClazzBuilder("MyClass").setPackageName("genClassUtils").addAnnotation(new ClazzAnnotation("Entity")).buildGetterSetter(myfield)
 				.buildGetterSetter(myfield1).buildGetterSetter(myfield2).addMethod(method).addGeneric("Long")
 				.buildClazz().genCode();
 
@@ -146,14 +155,14 @@ public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstra
 	}
 
 	public void addGetter(Field field) {
-		Method getter = new Method("get" + GenStringUtil.firstToUpper(field.getFieldName()));
+		ClazzMethod getter = new ClazzMethod("get" + GenStringUtil.firstToUpper(field.getFieldName()));
 		getter.setReturnType(field.getDataType());
 		getter.setContent("return " + field.getFieldName());
 		this.methodSet.add(getter);
 	}
 
 	public void addSetter(Field field) {
-		Method setter = new Method("set" + GenStringUtil.firstToUpper(field.getFieldName()));
+		ClazzMethod setter = new ClazzMethod("set" + GenStringUtil.firstToUpper(field.getFieldName()));
 		setter.setReturnType(null);
 		Parameter setterParam = new Parameter(field.getDataType(), field.getFieldName());
 		setter.getParameters().add(setterParam);

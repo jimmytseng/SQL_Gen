@@ -1,9 +1,9 @@
 package sqlGen.core.entity.jpa.annotation;
 
-import genClassUtils.Annotation;
-import genClassUtils.Method;
+import genClassUtils.annotation.FieldAnnotation;
+import genClassUtils.method.Method;
 
-public class ColumnAnnotation extends Annotation {
+public class ColumnAnnotation extends FieldAnnotation {
 
 	public ColumnAnnotation(String name) {
 		super("Column");

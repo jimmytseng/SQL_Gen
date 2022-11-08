@@ -1,14 +1,20 @@
-package genClassUtils;
+package genClassUtils.field;
 
 import java.util.Iterator;
 import java.util.Objects;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import genClassUtils.IsFinalCheck;
+import genClassUtils.IsStaticCheck;
+import genClassUtils.ReflectClazz;
+import genClassUtils.annotation.Annotation;
+import genClassUtils.annotation.FieldAnnotation;
 import genClassUtils.enums.AccessLevel;
 import genClassUtils.enums.DataType;
+import genClassUtils.utility.GenStringUtil;
 
-public class Field extends ReflectClazz implements IsFinalCheck, IsStaticCheck {
+public class Field extends ReflectClazz<FieldAnnotation> implements IsFinalCheck, IsStaticCheck {
 
 	private DataType dataType = DataType.STRING;
 
@@ -73,7 +79,7 @@ public class Field extends ReflectClazz implements IsFinalCheck, IsStaticCheck {
 	public String genCode() {
 		StringBuilder fieldBuilder = new StringBuilder();
 		if (this.annotation.size() > 0) {
-			Iterator<Annotation> it = this.annotation.iterator();
+			Iterator<FieldAnnotation> it = this.annotation.iterator();
 			while (it.hasNext()) {
 				fieldBuilder.append(changeLineAndSpace);
 				fieldBuilder.append(it.next().genCode());

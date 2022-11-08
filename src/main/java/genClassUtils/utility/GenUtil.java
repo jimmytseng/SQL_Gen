@@ -1,4 +1,4 @@
-package genClassUtils;
+package genClassUtils.utility;
 
 import java.io.File;
 import java.io.FileNotFoundException;

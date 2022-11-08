@@ -5,7 +5,12 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public abstract class CommonClazz<T extends Method> extends ReflectClazz {
+import genClassUtils._interface.Interface;
+import genClassUtils.annotation.ClazzAnnotation;
+import genClassUtils.field.Field;
+import genClassUtils.method.Method;
+
+public abstract class CommonClazz<T extends Method> extends ReflectClazz<ClazzAnnotation> {
 
 	protected String packageName = "";
 

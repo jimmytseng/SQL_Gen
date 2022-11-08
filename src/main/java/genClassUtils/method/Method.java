@@ -1,14 +1,22 @@
-package genClassUtils;
+package genClassUtils.method;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import genClassUtils.IsAbstractCheck;
+import genClassUtils.IsFinalCheck;
+import genClassUtils.IsStaticCheck;
+import genClassUtils.ReflectClazz;
+import genClassUtils.annotation.Annotation;
+import genClassUtils.annotation.MethodAnnotation;
 import genClassUtils.enums.AccessLevel;
 import genClassUtils.enums.DataType;
 import genClassUtils.enums.NonAccessModifier;
+import genClassUtils.param.Parameter;
+import genClassUtils.utility.GenStringUtil;
 
-public class Method extends ReflectClazz implements IsFinalCheck, IsStaticCheck, IsAbstractCheck {
+public class Method extends ReflectClazz<MethodAnnotation> implements IsFinalCheck, IsStaticCheck, IsAbstractCheck {
 
 	public Method(String methodName) {
 		this.methodName = methodName;
@@ -56,7 +64,7 @@ public class Method extends ReflectClazz implements IsFinalCheck, IsStaticCheck,
 		StringBuilder methodBuilder = new StringBuilder();
 		methodBuilder.append(changeLineAndSpace);
 		if (this.annotation.size() > 0) {
-			Iterator<Annotation> it = this.annotation.iterator();
+			Iterator<MethodAnnotation> it = this.annotation.iterator();
 			while (it.hasNext()) {
 				methodBuilder.append(changeLineAndSpace);
 				methodBuilder.append(it.next().genCode());

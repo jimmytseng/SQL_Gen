@@ -1,8 +1,11 @@
-package genClassUtils;
+package genClassUtils.annotation;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import genClassUtils.AutoGen;
+import genClassUtils.method.Method;
 
 public class Annotation implements AutoGen {
 

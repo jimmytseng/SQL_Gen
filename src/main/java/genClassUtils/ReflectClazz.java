@@ -3,14 +3,16 @@ package genClassUtils;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public abstract class ReflectClazz implements AutoGen{
+import genClassUtils.annotation.Annotation;
 
-	protected Set<Annotation> annotation = new LinkedHashSet<>();
+public abstract class ReflectClazz<T extends Annotation> implements AutoGen{
 
-	public Set<Annotation> getAnnotation() {
+	protected Set<T> annotation = new LinkedHashSet<>();
+
+	public Set<T> getAnnotation() {
 		return annotation;
 	}
-	public void setAnnotation(Set<Annotation> annotation) {
+	public void setAnnotation(Set<T> annotation) {
 		this.annotation = annotation;
 	}
 

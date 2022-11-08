@@ -1,6 +1,9 @@
-package genClassUtils;
+package genClassUtils._interface;
 
+import genClassUtils.AutoGen;
+import genClassUtils.CommonClazz;
 import genClassUtils.enums.AccessLevel;
+import genClassUtils.method.InterfaceMethod;
 
 public class Interface extends CommonClazz<InterfaceMethod> implements AutoGen {
 

@@ -1,4 +1,4 @@
-package genClassUtils;
+package genClassUtils.utility;
 
 public class GenStringUtil {
 	public static String firstToUpper(String originText) {

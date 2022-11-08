@@ -17,8 +17,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
-import genClassUtils.Field;
 import genClassUtils.enums.DataType;
+import genClassUtils.field.Field;
 import sqlGen.core.entity.EntityMetaData;
 import sqlGen.core.entity.jpa.annotation.ColumnAnnotation;
 

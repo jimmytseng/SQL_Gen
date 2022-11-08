@@ -7,13 +7,15 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import genClassUtils.Annotation;
 import genClassUtils.ClazzBuilder;
-import genClassUtils.Field;
-import genClassUtils.GenStringUtil;
-import genClassUtils.GenUtil;
-import genClassUtils.Method;
+import genClassUtils.annotation.Annotation;
+import genClassUtils.annotation.ClazzAnnotation;
+import genClassUtils.annotation.FieldAnnotation;
 import genClassUtils.enums.DataType;
+import genClassUtils.field.Field;
+import genClassUtils.method.Method;
+import genClassUtils.utility.GenStringUtil;
+import genClassUtils.utility.GenUtil;
 import sqlGen.core.entity.EntityMetaData;
 import sqlGen.core.entity.jpa.annotation.ColumnAnnotation;
 import sqlGen.dao.CommonTableDAO;
@@ -44,9 +46,9 @@ public class EntityService {
 		Set<String> keys = entityMetaData.getPrimaryKeys();
 		if (keys.size() == 1) {
 			String keyColumn = keys.iterator().next();
-			clazzBuilder.addAnnotation(new Annotation("Entity"));
+			clazzBuilder.addAnnotation(new ClazzAnnotation("Entity"));
 			entityColumn.stream().filter(field -> field.getFieldName().equals(keyColumn))
-					.forEach(field -> field.getAnnotation().add(new Annotation("Id")));
+					.forEach(field -> field.getAnnotation().add(new FieldAnnotation("Id")));
 			entityColumn.stream().forEach(field -> {
 				field.getAnnotation().add(new ColumnAnnotation("\"" + field.getFieldName() + "\""));
 			});

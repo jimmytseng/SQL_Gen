@@ -1,10 +1,13 @@
-package genClassUtils;
+package genClassUtils.param;
 
 import java.util.Iterator;
 
+import genClassUtils.IsFinalCheck;
+import genClassUtils.ReflectClazz;
+import genClassUtils.annotation.ParamAnnotation;
 import genClassUtils.enums.DataType;
 
-public class Parameter extends ReflectClazz implements IsFinalCheck {
+public class Parameter extends ReflectClazz<ParamAnnotation> implements IsFinalCheck {
 
 	public Parameter(String paraName) {
 		this.paraName = paraName;
@@ -53,7 +56,7 @@ public class Parameter extends ReflectClazz implements IsFinalCheck {
 	public String genCode() {
 		StringBuilder paraBuilder = new StringBuilder();
 		if (this.annotation.size() > 0) {
-			Iterator<Annotation> it = this.annotation.iterator();
+			Iterator<ParamAnnotation> it = this.annotation.iterator();
 			while (it.hasNext()) {
 				paraBuilder.append(it.next().genCode());
 				paraBuilder.append(emptySpace);

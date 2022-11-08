@@ -2,6 +2,11 @@ package genClassUtils;
 
 import java.util.Set;
 
+import genClassUtils._interface.Interface;
+import genClassUtils.annotation.ClazzAnnotation;
+import genClassUtils.field.Field;
+import genClassUtils.method.ClazzMethod;
+
 public class ClazzBuilder {
 
 	private Clazz clazz = new Clazz();
@@ -20,12 +25,12 @@ public class ClazzBuilder {
 		return this;
 	}
 
-	public ClazzBuilder addMethod(Method method) {
+	public ClazzBuilder addMethod(ClazzMethod method) {
 		this.clazz.getMethodSet().add(method);
 		return this;
 	}
 
-	public ClazzBuilder addAnnotation(Annotation annotation) {
+	public ClazzBuilder addAnnotation(ClazzAnnotation annotation) {
 		this.clazz.getAnnotation().add(annotation);
 		return this;
 	}

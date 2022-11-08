@@ -3,7 +3,7 @@ package sqlGen.core.entity;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import genClassUtils.Field;
+import genClassUtils.field.Field;
 
 public class EntityMetaData {
 

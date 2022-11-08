@@ -1,9 +1,13 @@
-package genClassUtils;
+package genClassUtils.method;
 
 import java.util.Iterator;
 
+import genClassUtils.annotation.Annotation;
+import genClassUtils.annotation.MethodAnnotation;
 import genClassUtils.enums.AccessLevel;
 import genClassUtils.enums.DataType;
+import genClassUtils.param.Parameter;
+import genClassUtils.utility.GenStringUtil;
 
 public class InterfaceMethod extends Method {
 
@@ -32,7 +36,7 @@ public class InterfaceMethod extends Method {
 		StringBuilder methodBuilder = new StringBuilder();
 		methodBuilder.append(changeLineAndSpace);
 		if (this.annotation.size() > 0) {
-			Iterator<Annotation> it = this.annotation.iterator();
+			Iterator<MethodAnnotation> it = this.annotation.iterator();
 			while (it.hasNext()) {
 				methodBuilder.append(changeLineAndSpace);
 				methodBuilder.append(it.next().genCode());
