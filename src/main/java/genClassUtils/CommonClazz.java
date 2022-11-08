@@ -7,6 +7,8 @@ import java.util.Set;
 
 public abstract class CommonClazz<T extends Method> extends ReflectClazz {
 
+	protected String packageName = "";
+
 	protected Set<String> generics = new LinkedHashSet<>();
 
 	protected Set<Interface> implementInterfaces = new HashSet<>();
@@ -16,6 +18,14 @@ public abstract class CommonClazz<T extends Method> extends ReflectClazz {
 	protected Set<T> methodSet = new LinkedHashSet<>();
 
 	protected Boolean isSupportGeneric = false;
+
+	public String getPackageName() {
+		return packageName;
+	}
+
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
+	}
 
 	public Set<String> getGenerics() {
 		return generics;

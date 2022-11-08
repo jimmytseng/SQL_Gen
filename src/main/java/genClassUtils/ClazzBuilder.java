@@ -10,6 +10,11 @@ public class ClazzBuilder {
 		this.clazz.setClassName(clazzName);
 	}
 
+	public ClazzBuilder setPackageName(String packageName) {
+		this.clazz.setPackageName(packageName);
+		return this;
+	}
+
 	public ClazzBuilder addField(Field field) {
 		this.clazz.getFieldSet().add(field);
 		return this;

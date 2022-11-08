@@ -2,7 +2,10 @@ package genClassUtils;
 
 import java.util.Iterator;
 
+import org.apache.commons.lang3.StringUtils;
+
 import genClassUtils.enums.ClazzAccessLevel;
+import genClassUtils.enums.DataType;
 
 public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstractCheck {
 
@@ -19,6 +22,11 @@ public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstra
 	@Override
 	public String genCode() {
 		StringBuilder clzzString = new StringBuilder();
+		clzzString.append("package ");
+		if(StringUtils.isNotBlank(clzzString)) {
+			clzzString.append(packageName);
+		}
+		clzzString.append(";");
 		clzzString.append(changeLine);
 		if (this.annotation.size() > 0) {
 			Iterator<Annotation> it = this.annotation.iterator();
@@ -71,23 +79,23 @@ public class Clazz extends CommonClazz<Method> implements IsFinalCheck, IsAbstra
 	}
 
 	public static void main(String[] args) {
-//		Field myfield = new Field("account");
-//		myfield.setDataType(DataType.BOOLEAN);
-//		Field myfield1 = new Field("address");
-//		Field myfield2 = new Field("name");
-//		myfield2.getAnnotation().add(new Annotation("Override"));
-//		InterfaceMethod method = new InterfaceMethod("MyTestMethod");
-//		method.getAnnotation().add(new Annotation("Overrid"));
-//		method.setReturnType(null);
-//		Parameter param = new Parameter("MyParam");
-//		Parameter param2 = new Parameter("MyParam2");
-//		method.getParameters().add(param);
-//		method.getParameters().add(param2);
-//		String clazz = new ClazzBuilder("MyClass").addAnnotation(new Annotation("Entity")).buildGetterSetter(myfield)
-//				.buildGetterSetter(myfield1).buildGetterSetter(myfield2).addMethod(method).addGeneric("Long")
-//				.buildClazz().genCode();
-//
-//		System.out.print(clazz);
+		Field myfield = new Field("account");
+		myfield.setDataType(DataType.BOOLEAN);
+		Field myfield1 = new Field("address");
+		Field myfield2 = new Field("name");
+		myfield2.getAnnotation().add(new Annotation("Override"));
+		InterfaceMethod method = new InterfaceMethod("MyTestMethod");
+		method.getAnnotation().add(new Annotation("Overrid"));
+		method.setReturnType(null);
+		Parameter param = new Parameter("MyParam");
+		Parameter param2 = new Parameter("MyParam2");
+		method.getParameters().add(param);
+		method.getParameters().add(param2);
+		String clazz = new ClazzBuilder("MyClass").setPackageName("genClassUtils").addAnnotation(new Annotation("Entity")).buildGetterSetter(myfield)
+				.buildGetterSetter(myfield1).buildGetterSetter(myfield2).addMethod(method).addGeneric("Long")
+				.buildClazz().genCode();
+
+		System.out.print(clazz);
 
 		// Interface
 //		Interface interClazz = new Interface("MyInterface");
