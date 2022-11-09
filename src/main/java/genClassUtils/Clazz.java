@@ -5,6 +5,7 @@ import java.util.Iterator;
 import org.apache.commons.lang3.StringUtils;
 
 import genClassUtils._interface.Interface;
+import genClassUtils._interface.InterfaceBuilder;
 import genClassUtils.annotation.Annotation;
 import genClassUtils.annotation.ClazzAnnotation;
 import genClassUtils.annotation.MethodAnnotation;
@@ -33,7 +34,7 @@ public class Clazz extends CommonClazz<ClazzMethod> implements IsFinalCheck, IsA
 	public String genCode() {
 		StringBuilder clzzString = new StringBuilder();
 		clzzString.append("package ");
-		if(StringUtils.isNotBlank(clzzString)) {
+		if(StringUtils.isNotBlank(packageName)) {
 			clzzString.append(packageName);
 		}
 		clzzString.append(";");
@@ -107,15 +108,18 @@ public class Clazz extends CommonClazz<ClazzMethod> implements IsFinalCheck, IsA
 //		System.out.print(clazz);
 
 		// Interface
-		Interface interClazz = new Interface("MyInterface");
+//		Interface interClazz = new Interface("MyInterface");
 		Interface extendsInterface = new Interface("JpaRepository");
 		extendsInterface.getGenerics().add("CPCDeviceInfoEntity");
 		extendsInterface.getGenerics().add("Integer");
-		interClazz.getImplementInterfaces().add(extendsInterface);
+//		interClazz.getImplementInterfaces().add(extendsInterface);
 		InterfaceMethod method1 = new InterfaceMethod("MyTestMethod");
-		interClazz.getMethodSet().add(method1);
-		System.out.println(interClazz.genCode());
-
+//		interClazz.getMethodSet().add(method1);
+//		System.out.println(interClazz.genCode());
+		
+		InterfaceBuilder builder = new InterfaceBuilder("MyInterface");
+		Interface myInterface = builder.addImplementInterfaces(extendsInterface).setPackageName("genClassUtils").addMethod(method1).buildInterface();
+		System.out.println(myInterface.genCode());
 	}
 
 	@Override

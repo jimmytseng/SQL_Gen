@@ -1,5 +1,7 @@
 package genClassUtils._interface;
 
+import org.apache.commons.lang3.StringUtils;
+
 import genClassUtils.AutoGen;
 import genClassUtils.CommonClazz;
 import genClassUtils.enums.AccessLevel;
@@ -26,6 +28,11 @@ public class Interface extends CommonClazz<InterfaceMethod> implements AutoGen {
 	@Override
 	public String genCode() {
 		StringBuilder interfaceBuilder = new StringBuilder();
+		interfaceBuilder.append("package ");
+		if (StringUtils.isNotBlank(packageName)) {
+			interfaceBuilder.append(packageName);
+		}
+		interfaceBuilder.append(";");
 		interfaceBuilder.append(changeLine);
 		interfaceBuilder.append(this.accessLevel.getAccLevelText() + emptySpace);
 		interfaceBuilder.append("interface " + this.interfaceName);
