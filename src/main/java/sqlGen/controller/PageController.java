@@ -14,7 +14,7 @@ import sqlGen.service.EntityService;
 
 @Controller
 @RequestMapping(value = "/entity")
-public class EntityController {
+public class PageController {
 
 	@Autowired
 	private CommonTableService tableService;
@@ -22,20 +22,10 @@ public class EntityController {
 	@Autowired
 	private EntityService entityService;
 
-	@RequestMapping("/native")
-	public String handler(ModelMap modelMap) {
-		return "entity/native";
-	}
 	
 	@RequestMapping("/jpa")
 	public String handler_jpa(ModelMap modelMap) {
 		return "entity/jpa";
-	}
-	
-	@RequestMapping("/genNativeEntity")
-	public String genNativeEntity(@RequestParam String tableName) {
-		this.entityService.genNativeEntity(tableName);
-		return "entity/native";
 	}
 	
 	@RequestMapping("/genJpaEntity")

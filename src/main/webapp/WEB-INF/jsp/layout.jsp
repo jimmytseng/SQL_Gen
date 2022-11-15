@@ -12,6 +12,9 @@
 	src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+<script>
+	var contextPath = "SQLGen";
+</script>
 <link
 	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">

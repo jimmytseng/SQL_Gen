@@ -11,14 +11,11 @@
 	                <ul class="collapse list-unstyled" id="SQL_Gen">
 	                    <li><a href="${pageContext.request.contextPath}/sql/native">native_sql</a></li>
 	                    <li><a href="${pageContext.request.contextPath}/sql/jdbctemplate">jdbc_template</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/sql/jpa">spring_jpa</a></li>
-	                    <li><a href="${pageContext.request.contextPath}/sql/hibernate">hibernate</a></li>
 	                </ul>
 	          </li>
 	          <li class="active">
 	          		<a href="#Entity_Gen" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Entity_Gen</a>
 	          		<ul class="collapse list-unstyled" id="Entity_Gen">
-          	      		 <li><a href="${pageContext.request.contextPath}/entity/native">CommonEntity</a></li>
           	      		 <li><a href="${pageContext.request.contextPath}/entity/jpa">JpaEntity</a></li>
           	        </ul>
           	  </li> 

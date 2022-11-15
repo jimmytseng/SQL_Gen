@@ -19,6 +19,11 @@ public class ClazzBuilder {
 		this.clazz.setPackageName(packageName);
 		return this;
 	}
+	
+	public ClazzBuilder setImports(Set<String> imports) {
+		this.clazz.setImports(imports); 
+		return this;
+	}
 
 	public ClazzBuilder addField(Field field) {
 		this.clazz.getFieldSet().add(field);

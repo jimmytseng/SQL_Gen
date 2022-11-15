@@ -24,6 +24,8 @@ public class SQLController {
 	public String handler(@ModelAttribute("sqlGenDTO")GenSqlDTO sqlGenDTO,ModelMap modelMap) {
 		return "sql/native";
 	}
+	
+	//wait to restController
 	@RequestMapping("/genNativeSql")
 	public String genSql(@ModelAttribute("sqlGenDTO")GenSqlDTO sqlGenDTO,ModelMap modelMap) {
 		GenSQLService genService = new GenSQLService();

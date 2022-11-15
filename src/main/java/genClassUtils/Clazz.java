@@ -34,10 +34,13 @@ public class Clazz extends CommonClazz<ClazzMethod> implements IsFinalCheck, IsA
 	public String genCode() {
 		StringBuilder clzzString = new StringBuilder();
 		clzzString.append("package ");
-		if(StringUtils.isNotBlank(packageName)) {
+		if (StringUtils.isNotBlank(packageName)) {
 			clzzString.append(packageName);
 		}
-		clzzString.append(";");
+		clzzString.append(";"+changeLine);
+		for (String clazzImport : imports) {
+			clzzString.append("import "+clazzImport+";"+changeLine);
+		}
 		clzzString.append(changeLine);
 		if (this.annotation.size() > 0) {
 			Iterator<ClazzAnnotation> it = this.annotation.iterator();
@@ -116,9 +119,10 @@ public class Clazz extends CommonClazz<ClazzMethod> implements IsFinalCheck, IsA
 		InterfaceMethod method1 = new InterfaceMethod("MyTestMethod");
 //		interClazz.getMethodSet().add(method1);
 //		System.out.println(interClazz.genCode());
-		
+
 		InterfaceBuilder builder = new InterfaceBuilder("MyInterface");
-		Interface myInterface = builder.addImplementInterfaces(extendsInterface).setPackageName("genClassUtils").addMethod(method1).buildInterface();
+		Interface myInterface = builder.addImplementInterfaces(extendsInterface).setPackageName("genClassUtils")
+				.addMethod(method1).buildInterface();
 		System.out.println(myInterface.genCode());
 	}
 

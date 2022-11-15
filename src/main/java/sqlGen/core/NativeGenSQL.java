@@ -102,7 +102,6 @@ public class NativeGenSQL extends GenSQL {
 
 	private StringBuilder concateWhereConditon(StringBuilder builder) {
 		String whereCondition = this.genSqlDTO.getWhereCondition();
-		builder.append(" where");
 		if (StringUtils.isNotBlank(whereCondition))
 			builder.append(" " + whereCondition + " ");
 		return builder;

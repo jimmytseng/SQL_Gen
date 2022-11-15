@@ -24,7 +24,7 @@ public enum DataType {
 		case "LONGVARBINARY":
 		case "BLOB":
 			return DataType.ByteArray;
-		case "INTEGER":
+		case "INT":
 			return DataType.INTEGER;
 		case "FLOAT":
 			return DataType.FLOAT;

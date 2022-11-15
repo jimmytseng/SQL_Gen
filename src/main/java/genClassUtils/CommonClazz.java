@@ -13,6 +13,8 @@ import genClassUtils.method.Method;
 public abstract class CommonClazz<T extends Method> extends ReflectClazz<ClazzAnnotation> {
 
 	protected String packageName = "";
+	
+	protected Set<String> imports = new HashSet<>();
 
 	protected Set<String> generics = new LinkedHashSet<>();
 
@@ -23,6 +25,15 @@ public abstract class CommonClazz<T extends Method> extends ReflectClazz<ClazzAn
 	protected Set<T> methodSet = new LinkedHashSet<>();
 
 	protected Boolean isSupportGeneric = false;
+	
+
+	public Set<String> getImports() {
+		return imports;
+	}
+
+	public void setImports(Set<String> imports) {
+		this.imports = imports;
+	}
 
 	public String getPackageName() {
 		return packageName;

@@ -122,7 +122,7 @@ public class CommonTableDAO {
 			while (rs.next()) {
 				String columenName = rs.getString("COLUMN_NAME");
 				String columnType = rs.getString("TYPE_NAME");
-				Field field = new Field(columenName, DataType.getDataType(columnType));
+				Field field = new Field(columenName, DataType.getDataType(columnType.replace("identity", "").trim().toUpperCase()));
 				entityMetaData.getEntityColumns().add(field);
 			}
 			primaryKeyRs = md.getPrimaryKeys(null, "dbo", tableName);
